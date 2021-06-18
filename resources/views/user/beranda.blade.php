@@ -140,7 +140,7 @@
                                     <img class="img-fluid" src="{{asset('images/logo/shopeepay-logo.png')}}" alt="alternative" style="width: 200px; height:60px; margin-top:5px;">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="img-fluid" src="{{asset('images/logo/cutter/ovo.png')}}" alt="alternative"">
+                                    <img class="img-fluid" src="{{asset('images/logo/cutter/ovo.png')}}" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
                                     <img class="img-fluid" src="{{asset('images/logo/gopay.png')}}" alt="alternative" style="margin-top:10px;">
@@ -260,7 +260,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="h2-heading">About US</h2>
-                    <p class="p-heading">You can read below a few testimonials from satisfied shop owners. Of course there are also some unhappy ones but they're not here</p>
+                    {{-- <p class="p-heading">You can read below a few testimonials from satisfied shop owners. Of course there are also some unhappy ones but they're not here</p> --}}
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
@@ -275,12 +275,12 @@
                                 <div class="swiper-slide">
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="testimonial-text">I am happy to have chosen Blink for our shop implementation. Their specialized experience helped the project and made it available 2 weeks prior the launch date for extensive testing</p>
+                                            <p class="testimonial-text">Saya Bertugas Untuk Mendesain Tampilan Website Sebelum Di Implementasikan Ke Halaman Website </p>
                                             <div class="details">
-                                                <img class="testimonial-image" src="images/testimonial-1.jpg" alt="alternative">
+                                                <img class="testimonial-image" src="{{asset('images/about us/ajeng.jpeg')}}" alt="alternative">
                                                 <div class="text">
-                                                    <div class="testimonial-author">Samantha Bloom</div>
-                                                    <div class="occupation">Team Leader - Syncnow</div>
+                                                    <div class="testimonial-author">Ajeng Nurfadillah</div>
+                                                    <div class="occupation">UI Designer</div>
                                                 </div> <!-- end of text -->
                                             </div> <!-- end of testimonial-details -->
                                         </div>
@@ -292,12 +292,12 @@
                                 <div class="swiper-slide">
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="testimonial-text">Totally recommended. I am happy to have chosen Blink for our shop implementation. Their great specialized experience helped the project and made it available 2 weeks prior the launch</p>
+                                            <p class="testimonial-text">Saya Bertugas Untuk Mendesain Tampilan Website Sebelum Di Implementasikan Ke Halaman Website</p>
                                             <div class="details">
-                                                <img class="testimonial-image" src="images/testimonial-2.jpg" alt="alternative">
+                                                <img class="testimonial-image" src="{{asset('images/about us/nadiahertisa.jpg')}}" alt="alternative">
                                                 <div class="text">
-                                                    <div class="testimonial-author">Nicolas Richter</div>
-                                                    <div class="occupation">Manager - Firstup</div>
+                                                    <div class="testimonial-author">Nadia Hertisa</div>
+                                                    <div class="occupation">UI Designer</div>
                                                 </div> <!-- end of text -->
                                             </div> <!-- end of testimonial-details -->
                                         </div>
@@ -309,12 +309,12 @@
                                 <div class="swiper-slide">
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="testimonial-text">I am happy to have chosen Blink for our shop implementation. Their specialized experience helped the project and made it available 2 weeks prior the launch date for extensive testing</p>
+                                            <p class="testimonial-text">Saya Bertugas Mengimplementasikan Desain Website Ke Halaman Website </p>
                                             <div class="details">
-                                                <img class="testimonial-image" src="images/testimonial-3.jpg" alt="alternative">
+                                                <img class="testimonial-image" src="{{asset('images/about us/gita.png')}}" alt="alternative">
                                                 <div class="text">
-                                                    <div class="testimonial-author">Mary Longhorn</div>
-                                                    <div class="occupation">Designer - Firstdev</div>
+                                                    <div class="testimonial-author">Arianti Apriani Sagita</div>
+                                                    <div class="occupation">Frontend Developer</div>
                                                 </div> <!-- end of text -->
                                             </div> <!-- end of testimonial-details -->
                                         </div>
@@ -326,12 +326,12 @@
                                 <div class="swiper-slide">
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="testimonial-text">Totally recommended. I am happy to have chosen Blink for our shop implementation. Their great specialized experience helped the project and made it available 2 weeks prior the launch</p>
+                                            <p class="testimonial-text">Saya Bertugas Mengimplementasikan Desain Website Ke Halaman Website</p>
                                             <div class="details">
-                                                <img class="testimonial-image" src="images/testimonial-4.jpg" alt="alternative">
+                                                <img class="testimonial-image" src="{{asset('images/about us/tiara.png')}}" alt="alternative">
                                                 <div class="text">
-                                                    <div class="testimonial-author">Mike Page</div>
-                                                    <div class="occupation">Developer - Chainlink</div>
+                                                    <div class="testimonial-author">Tiara Situmorang</div>
+                                                    <div class="occupation">Frontend Developer</div>
                                                 </div> <!-- end of text -->
                                             </div> <!-- end of testimonial-details -->
                                         </div>
@@ -343,12 +343,12 @@
                                 <div class="swiper-slide">
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="testimonial-text">I am happy to have chosen Blink for our shop implementation. Their specialized experience helped the project and made it available 2 weeks prior the launch date for extensive testing</p>
+                                            <p class="testimonial-text">Saya Bertugas Membuat Sistem Dan Fitur Untuk Website</p>
                                             <div class="details">
-                                                <img class="testimonial-image" src="images/testimonial-5.jpg" alt="alternative">
+                                                <img class="testimonial-image" src="{{asset('images/about us/al-picture.png')}}" alt="alternative">
                                                 <div class="text">
-                                                    <div class="testimonial-author">Susanne Blake</div>
-                                                    <div class="occupation">Operations - Launchday</div>
+                                                    <div class="testimonial-author">Muhammad Alghifari</div>
+                                                    <div class="occupation">Backend Developer</div>
                                                 </div> <!-- end of text -->
                                             </div> <!-- end of testimonial-details -->
                                         </div>
@@ -356,7 +356,7 @@
                                 </div> <!-- end of swiper-slide -->
                                 <!-- end of slide -->
 
-                                <!-- Slide -->
+                                {{-- <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="card">
                                         <div class="card-body">
@@ -371,7 +371,7 @@
                                         </div>
                                     </div>
                                 </div> <!-- end of swiper-slide -->
-                                <!-- end of slide -->
+                                <!-- end of slide --> --}}
 
                             </div> <!-- end of swiper-wrapper -->
 
