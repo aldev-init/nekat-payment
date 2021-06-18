@@ -15,7 +15,9 @@ class AdminSystemController extends Controller
             ])->first();
         if($admin){
             Auth::guard('admin')->login($admin);
-            return redirect('/admin/beranda')->with('status','Login Berhasil');
+            if(Auth::guard('admin')->check()){
+                return redirect('/admin/beranda')->with('status','Login Berhasil');
+            }
         }else{
             return redirect('/admin/login')->with('status','Login Gagal');
         }
@@ -23,7 +25,7 @@ class AdminSystemController extends Controller
     }
 
     public function logout(){
-        Auth::logout();
+        Auth::guard('admin')->logout();
         return redirect('/admin/login')->with('status','Logout Berhasil');
     }
 

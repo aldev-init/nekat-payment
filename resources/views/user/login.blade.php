@@ -23,10 +23,10 @@
 </div>
 <div class="text-center p-t-12">
     <span class="txt1">
-        Lupa
+        Login
     </span>
-    <a class="txt2" href="#">
-        Password?
+    <a class="txt2" href="/admin/login">
+        Admin
     </a>
 </div>
 <script>

@@ -13,16 +13,21 @@ class UserPagesController extends Controller
 {
 
     public function beranda(){
-        // $bool = 'false';
         $nominalpembayaran = NominalPembayaran::all();
         return View('user.beranda',compact('nominalpembayaran'));
     }
     //return view login for user
     public function getformlogin(){
-        //jika user sudah login,tidak bisa akses ke menu login
-        // if(Auth::user()){
-        //     return redirect('/');
-        // }
+        //jika user belum logout tidak bisa akses halaman login
+        if(Auth::check()){
+            return redirect('/')->with('login','Logout Terlebih dahulu');
+        }
+
+        //jika admin sudah login tidak bisa akses halaman login user
+        if( Auth::guard('admin')->check() && Auth::guard('admin')->user()->role == 'admin'){
+            return redirect('/admin/beranda');
+        }
+
         return view('user.login');
     }
     //return view register for user

@@ -16,7 +16,11 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // if(Auth::guard('admin')->user()->role != 'admin'){
+        $admin = Auth::guard('admin')->guest();
+        if(Auth::guard('admin')->user()){
+            dd($admin);
+        }
+        // if(Auth::guard('admin')->user()->role == 'admin'){
         //     return redirect('/admin/beranda')->with('status','Anda Bukan User');
         // }
         return $next($request);

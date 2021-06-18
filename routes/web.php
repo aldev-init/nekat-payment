@@ -20,11 +20,9 @@ Route::get('/forgotpassword','UserPagesController@resetpassword');
 Route::get('/panduanaplikasi','UserPagesController@panduanaplikasi');
 
 Route::middleware(['auth'])->group(function(){
-    Route::middleware(['user'])->group(function(){
-        Route::get('/pembayaran','UserPagesController@getformpembayaran');
-        Route::get('/profile','UserSystemController@profile');
-        Route::get('/editprofile/{id}','UserSystemController@editprofile');
-    });
+    Route::get('/pembayaran','UserPagesController@getformpembayaran');
+    Route::get('/profile','UserSystemController@profile');
+    Route::get('/editprofile/{id}','UserSystemController@editprofile');
 });
 
 
@@ -37,17 +35,14 @@ Route::post('/editprofile/{id}','UserSystemController@editprofile');
 
 //admin
 Route::get('/admin/login','AdminPagesController@loginform')->name('admin/login');
-Route::middleware(['authadmin'])->group(function(){
-    Route::middleware(['admin'])->group(function(){
-        Route::get('/admin/beranda','AdminPagesController@beranda');
-        Route::get('/admin/datasiswa','AdminPagesController@dataSiswa');
-        Route::get('/admin/riwayat','AdminPagesController@riwayat');
-
-        //crud Admin
-        Route::get('/admin/datasiswa/tambahdata','AdminPagesController@tambahData');
-        Route::get('/admin/datasiswa/delete/{id}','AdminDataController@destroy');
-        Route::get('/admin/datasiswa/editdata/{id}','AdminPagesController@editData');
-    });
+Route::middleware(['admin'])->group(function(){
+    Route::get('/admin/beranda','AdminPagesController@beranda');
+    Route::get('/admin/datasiswa','AdminPagesController@dataSiswa');
+    Route::get('/admin/riwayat','AdminPagesController@riwayat');
+    //crud Admin
+    Route::get('/admin/datasiswa/tambahdata','AdminPagesController@tambahData');
+    Route::get('/admin/datasiswa/delete/{id}','AdminDataController@destroy');
+    Route::get('/admin/datasiswa/editdata/{id}','AdminPagesController@editData');
 });
 
 Route::post('/admin/datasiswa/tambahdata','AdminDataController@create');

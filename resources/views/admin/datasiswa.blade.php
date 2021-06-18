@@ -43,8 +43,8 @@
                         <td>{{$dt->alamat}}</td>
                         <td>{{$dt->kelas}}</td>
                         <td>{{$dt->jurusan}}</td>
-                        <td>{{$dt->nis}}</td>
                         <td>{{$dt->nisn}}</td>
+                        <td>{{$dt->nis}}</td>
                         <td>
                             <div class="action-container">
                                 <a href="/admin/datasiswa/editdata/{{$dt->id}}" class="btn btn-block btn-xs btn-warning">Ubah</a><a href="/admin/datasiswa/delete/{{$dt->id}}" class="btn btn-block btn-xs btn-danger">Hapus</a>
