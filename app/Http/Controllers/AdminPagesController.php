@@ -40,9 +40,11 @@ class AdminPagesController extends Controller
         //query database join
         $data = UserDataModel::join('kelas','kelas.id','=','user_data.id_kelas')
                                 ->join('jurusan','jurusan.id','=','user_data.id_jurusan')
-                                ->get(['user_data.id','nama_lengkap','email','alamat','nisn','nis','kelas.kelas','jurusan.jurusan']);
+                                ->get(['user_data.id','nama_lengkap','email','alamat','nisn','nis','kelas.kelas','jurusan.jurusan','password','user_data.id_kelas','user_data.id_jurusan']);
         $pagination = UserDataModel::paginate(5);
-        return view('admin.datasiswa',compact('data','pagination'));
+        $kelas = KelasModel::all();
+        $jurusan = JurusanModel::all();
+        return view('admin.datasiswa',compact('data','pagination','kelas','jurusan',));
     }
     public function tambahData(){
         //kembalikan ke halaman login jika admin belum login
@@ -70,6 +72,12 @@ class AdminPagesController extends Controller
         }
         return view('admin.transaksisiswa');
     }
+    public function kelasjurusan(){
+        $kelas = KelasModel::all();
+        $jurusan = JurusanModel::all();
+        return view('admin.kelasjurusan',compact('kelas','jurusan'));
+    }
+
 
     // public function registerform(){
     //     return view('admin.register');

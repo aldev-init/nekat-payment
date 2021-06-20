@@ -13,8 +13,7 @@ class UserPagesController extends Controller
 {
 
     public function beranda(){
-        $nominalpembayaran = NominalPembayaran::all();
-        return View('user.beranda',compact('nominalpembayaran'));
+        return View('user.beranda');
     }
     //return view login for user
     public function getformlogin(){

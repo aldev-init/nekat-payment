@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AdminData;
 use Illuminate\Support\Facades\Auth;
+use App\Models\KelasModel;
+use App\Models\JurusanModel;
 
 class AdminSystemController extends Controller
 {
@@ -27,6 +29,40 @@ class AdminSystemController extends Controller
     public function logout(){
         Auth::guard('admin')->logout();
         return redirect('/admin/login')->with('status','Logout Berhasil');
+    }
+
+    //crud kelas
+    public function hapuskelas($id){
+        $hapus = KelasModel::where('id','=',$id)->delete();
+        return redirect('/admin/kelasjurusan')->with('status','Data Berhasil Dihapus');
+    }
+    public function ubahkelas($id,Request $request){
+        $ubah = KelasModel::where('id','=',$id)->update('status','Data Berhasil Diubah');
+    }
+    public function tambahkelas(Request $request){
+        $kelas = new KelasModel();
+        $kelas->kelas = $request->kelas;
+        $kelas->save();
+        return redirect('/admin/kelasjurusan')->with('status','Tambah Data Kelas Berhasil');
+    }
+
+    //crud jurusan
+    public function hapusjurusan($id){
+        $hapus = JurusanModel::where('id','=',$id)->delete();
+        return redirect('/admin/kelasjurusan')->with('status','Data Berhasil Dihapus');
+    }
+    public function ubahjurusan($id,Request $request){
+        $ubah = JurusanModel::where('id','=',$id)->update([
+            'jurusan' => $request->jurusan,
+        ]);
+        return redirect('/admin/kelasjurusan')->with('status','Data Berhasil Diubah');
+    }
+
+    public function tambahjurusan(Request $request){
+        $jurusan = new JurusanModel();
+        $jurusan->jurusan = $request->jurusan;
+        $jurusan->save();
+        return redirect('/admin/kelasjurusan')->with('status','Tambah Data Jurusan Berhasil');
     }
 
     // public function registersystem(Request $request){

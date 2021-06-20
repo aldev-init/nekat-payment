@@ -209,7 +209,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link {{(request()->is('admin/kelasjurusan')) ? 'active':''}}">
+            <a href="/admin/kelasjurusan" class="nav-link {{(request()->is('admin/kelasjurusan')) ? 'active':''}}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Data Kelas Dan Jurusan

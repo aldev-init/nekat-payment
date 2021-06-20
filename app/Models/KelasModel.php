@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class KelasModel extends Model
 {
     protected $table = 'kelas';
+    public $timestamps = false;
     use HasFactory;
 }

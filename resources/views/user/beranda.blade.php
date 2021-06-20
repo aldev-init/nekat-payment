@@ -65,15 +65,11 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#aboutus">About Us</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pembayaran</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            @foreach ($nominalpembayaran as $np )
-                            <a class="dropdown-item page-scroll" href="article.html">{{$np->nama_pembayaran}}</a>
-                            <div class="dropdown-divider"></div>
-                            @endforeach
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/pembayaran">Pembayaran</a>
+                        {{-- <div class="dropdown-menu" aria-labelledby="dropdown01"> --}}
                             {{-- <a class="dropdown-item page-scroll" href="privacy.html">Privacy Policy</a> --}}
-                        </div>
+                        {{-- </div> --}}
                     </li>
                 </ul>
                 @guest

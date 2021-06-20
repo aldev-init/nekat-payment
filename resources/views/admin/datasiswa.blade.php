@@ -21,7 +21,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                <a href="/admin/datasiswa/tambahdata" class="btn btn-block btn-success" style="width: 150px; margin-bottom:10px;">Tambah Data</a>
+                <button class="btn btn-block btn-success" data-target="#tambahdata" data-toggle="modal"style="width: 150px; margin-bottom:10px;">Tambah Data</button>
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                     <tr>
@@ -47,7 +47,8 @@
                         <td>{{$dt->nis}}</td>
                         <td>
                             <div class="action-container">
-                                <a href="/admin/datasiswa/editdata/{{$dt->id}}" class="btn btn-block btn-xs btn-warning">Ubah</a><a href="/admin/datasiswa/delete/{{$dt->id}}" class="btn btn-block btn-xs btn-danger">Hapus</a>
+                                <button data-target="#editdata-{{$dt->id}}" data-toggle="modal" class="btn btn-block btn-xs btn-warning">Ubah</button>
+                                <a href="/admin/datasiswa/delete/{{$dt->id}}" class="btn btn-block btn-xs btn-danger">Hapus</a>
                             </div>
                         </td>
                       </tr>
@@ -128,7 +129,6 @@
                     </tr>
                     </tfoot> --}}
                   </table>
-                  {{--//FIXME --}}
                   {{-- <div class="box-footer clearfix">
                     {{$pagination->links()}}
                   </div> --}}
@@ -208,4 +208,234 @@
       });
     });
   </script> --}}
+
+{{-- popup Tambah data --}}
+<div class="modal" id="tambahdata" role="dialog" arialabelledby="modalLabel" area-hidden="true" style="width: 50%;margin-left:345px; margin-top:65px;overflow:hidden;">
+    <!-- general form elements -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Tambah Data Siswa</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form action="/admin/datasiswa/tambahdata" method="POST">
+        @csrf
+          <div class="card-body">
+            <div class="row gutters">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="namalengkap">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="namalengkap" placeholder="Masukan nama lengkap" name="nama_lengkap">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" placeholder="Masukan alamat" name="alamat">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="nis">NIS</label>
+                        <input type="text" class="form-control" id="nis" placeholder="Masukan NIS" name="nis">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="id_kelas">Kelas</label>
+                        <select name="id_kelas" id="id_kelas" class="form-control">
+                            @foreach ($kelas as $kls )
+                                <option value="{{$kls->id}}">{{$kls->kelas}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="nisn">NISN</label>
+                        <input type="text" class="form-control" id="nisn" placeholder="Masukan NISN" name="nisn">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="id_jurusan">Jurusan</label>
+                        <select name="id_jurusan" id="id_jurusan" class="form-control">
+                            @foreach ($jurusan as $jrsn )
+                                <option value="{{$jrsn->id}}">{{$jrsn->jurusan}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="Masukan Email" name="email">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Masukan password" name="password">
+                        <input type="checkbox" onclick="passwordFeature()">Show Password
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="text-right">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Batal</button>
+                        <button type="submit" id="submit" name="submit" class="btn btn-primary">Tambah Data</button>
+                    </div>
+                </div>
+            </div>
+        </>
+          {{-- <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="exampleInputFile">
+                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+              </div>
+              <div class="input-group-append">
+                <span class="input-group-text" id="">Upload</span>
+              </div>
+            </div>
+          </div> --}}
+          {{-- <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div> --}}
+        </div>
+        <!-- /.card-body -->
+      </form>
+    </div>
+</div>
+
+{{-- popup editdata --}}
+@foreach ($data as $dt )
+<div class="modal" id="editdata-{{$dt->id}}" role="dialog" arialabelledby="modalLabel" area-hidden="true" style="width: 50%;margin-left:345px; margin-top:65px;overflow:hidden;">
+    <!-- general form elements -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Edit Data Siswa</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form action="/admin/datasiswa/editdata/{{$dt->id}}" method="POST">
+        @csrf
+          <div class="card-body">
+            <div class="row gutters">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="namalengkap">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="namalengkap" placeholder="Masukan nama lengkap" name="nama_lengkap" value="{{$dt->nama_lengkap}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" placeholder="Masukan alamat" name="alamat" value="{{$dt->alamat}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="nis">NIS</label>
+                        <input type="text" class="form-control" id="nis" placeholder="Masukan NIS" name="nis" value="{{$dt->nis}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="id_kelas">Kelas</label>
+                        <select name="id_kelas" id="id_kelas" class="form-control">
+                            @foreach ($kelas as $kls )
+                                <option value="{{$kls->id}}" {{($dt->id_kelas == $kls->id) ? 'selected':''}}>{{$kls->kelas}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="nisn">NISN</label>
+                        <input type="text" class="form-control" id="nisn" placeholder="Masukan NISN" name="nisn" value="{{$dt->nisn}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="id_jurusan">Jurusan</label>
+                        <select name="id_jurusan" id="id_jurusan" class="form-control">
+                            @foreach ($jurusan as $jrsn )
+                                <option value="{{$jrsn->id}}" {{($jrsn->id == $dt->id_jurusan) ? 'selected':''}}>{{$jrsn->jurusan}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="Masukan Email" name="email" value="{{$dt->email}}">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Masukan password" name="password" value="{{$dt->password}}">
+                        <input type="checkbox" onclick="passwordFeature()">Show Password
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="text-right">
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Batal</button>
+                        <button type="submit" id="submit" name="submit" class="btn btn-primary">Edit Data</button>
+                    </div>
+                </div>
+            </div>
+        </>
+          {{-- <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="exampleInputFile">
+                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+              </div>
+              <div class="input-group-append">
+                <span class="input-group-text" id="">Upload</span>
+              </div>
+            </div>
+          </div> --}}
+          {{-- <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div> --}}
+        </div>
+        <!-- /.card-body -->
+      </form>
+    </div>
+</div>
+@endforeach
+@endsection
+@section('javascript')
+<script>
+    function passwordFeature(){
+        //get element from input checkbox id
+        var checkbox = document.getElementById('password').type;
+        //condition type input checkbox
+        if(checkbox == 'password'){
+            document.getElementById('password').type = 'text';
+        }else{
+            document.getElementById('password').type = 'password';
+        }
+    }
+</script>
 @endsection

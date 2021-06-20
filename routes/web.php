@@ -39,16 +39,31 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin/beranda','AdminPagesController@beranda');
     Route::get('/admin/datasiswa','AdminPagesController@dataSiswa');
     Route::get('/admin/riwayat','AdminPagesController@riwayat');
-    //crud Admin
+    Route::get('/admin/kelasjurusan','AdminPagesController@kelasjurusan');
+    //crud Admin datasiswa
     Route::get('/admin/datasiswa/tambahdata','AdminPagesController@tambahData');
     Route::get('/admin/datasiswa/delete/{id}','AdminDataController@destroy');
     Route::get('/admin/datasiswa/editdata/{id}','AdminPagesController@editData');
+
+    //crud admin kelas
+    Route::get('/admin/kelas/delete/{id}','AdminSystemController@hapuskelas');
+    Route::post('/admin/kelas/edit/{id}','AdminSystemController@ubahkelas');
+    //crud admin jurusan
+    Route::get('/admin/jurusan/delete/{id}','AdminSystemController@hapusjurusan');
+    Route::post('/admin/jurusan/edit/{id}','AdminSystemController@ubahjurusan');
 });
 
+//post datasiswa
 Route::post('/admin/datasiswa/tambahdata','AdminDataController@create');
 Route::post('/admin/datasiswa/editdata/{id}',"AdminDataController@edit");
 
-Route::get('/admin/logout','AdminSystemController@logout');
+//post kelas
+Route::post('/admin/kelas/tambahkelas','AdminSystemController@tambahkelas');
 
+//post jurusan
+Route::post('/admin/jurusan/tambahjurusan','AdminSystemController@tambahjurusan');
+
+
+Route::get('/admin/logout','AdminSystemController@logout');
 Route::post('/admin/login','AdminSystemController@loginsystem');
 // Route::post('/admin/register','AdminSystemController@registersystem');
