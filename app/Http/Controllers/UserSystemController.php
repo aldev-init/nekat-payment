@@ -50,20 +50,13 @@ class UserSystemController extends Controller
     // }
 
     public function profile(){
-        $kelas = KelasModel::all();
-        $jurusan = jurusanModel::all();
-        $datauser = [
-            'id' => Auth::user()->id,
-            'password' => Auth::user()->password,
-            'nama_lengkap' => Auth::user()->nama_lengkap,
-            'email' => Auth::user()->email,
-            'alamat' => Auth::user()->alamat,
-            'nisn' => Auth::user()->nisn,
-            'nis' => Auth::user()->nis,
-            'id_kelas' => Auth::user()->id_kelas,
-            'id_jurusan' => Auth::user()->id_jurusan
-        ];
-        return view('user.profile',compact('datauser','kelas','jurusan'));
+        $id = Auth::user()->id;
+        $data = UserDataModel::join('kelas','user_data.id_kelas','=','kelas.id')
+                                ->join('jurusan','user_data.id_jurusan','=','jurusan.id')
+                                ->where('user_data.id',$id)
+                                ->get(['user_data.nama_lengkap','user_data.password','user_data.alamat',
+                                'kelas.kelas','jurusan.jurusan','user_data.nis','user_data.nisn']);
+        return view('user.profile',compact('data'));
     }
 
     public function editprofile(Request $request,$id){

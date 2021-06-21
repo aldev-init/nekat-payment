@@ -18,8 +18,8 @@ class UserData extends Migration
             $table->string('nama_lengkap')->nullable();
             $table->string('email')->nullable();
             $table->string('alamat')->nullable();
-            $table->integer('nisn')->nullable();
-            $table->integer('nis')->nullable();
+            $table->string('nisn')->nullable();
+            $table->string('nis')->nullable();
             $table->integer('id_kelas');
             $table->integer('id_jurusan');
             $table->string('password');

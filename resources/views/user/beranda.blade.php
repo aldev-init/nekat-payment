@@ -88,6 +88,8 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item page-scroll" href="/profile">Edit Profile</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item page-scroll" href="/riwayat">Riwayat Transaksi</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item page-scroll" href="/logout">Logout</a>
                         <div class="dropdown-divider"></div>
                     </div>

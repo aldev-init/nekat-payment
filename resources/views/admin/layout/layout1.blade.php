@@ -217,7 +217,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link {{(request()->is('admin/riwayat')) ? 'active':''}}">
+            <a href="/admin/transaksisiswa" class="nav-link {{(request()->is('admin/transaksisiswa')) ? 'active':''}}">
               <i class="nav-icon fas fa-address-book"></i>
               <p>
                 Riwayat Transaksi Siswa
@@ -272,13 +272,13 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  {{-- <footer class="main-footer"> --}}
     {{-- <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.1.0
     </div> --}}
-  </footer>
+  {{-- </footer> --}}
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

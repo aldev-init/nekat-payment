@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\KelasModel;
 use App\Models\jurusanModel;
 use App\Models\NominalPembayaran;
+use App\Models\UserRecordModel;
 use Illuminate\Support\Facades\Auth;
 
 class UserPagesController extends Controller
@@ -39,6 +40,20 @@ class UserPagesController extends Controller
     public function getformpembayaran(){
         $nominalpembayaran = NominalPembayaran::all();
         return view('user.pembayaran',compact('nominalpembayaran'));
+    }
+
+    public function riwayat(){
+        //get id user login
+        $id = Auth::user()->id;
+        $data = UserRecordModel::join('user_data','user_data.id','=','user_records.id_nama')
+                                ->join('kelas','kelas.id','=','user_records.id_kelas')
+                                ->join('jurusan','jurusan.id','=','user_records.id_jurusan')
+                                ->join('bulan','bulan.id','=','user_records.id_bulan')
+                                ->join('nominal_pembayaran','nominal_pembayaran.id','=','user_records.keterangan_pembayaran')
+                                ->orderBy('user_records.created_at','desc')
+                                ->where('user_data.id',$id)
+                                ->get(['bulan.bulan','nominal_pembayaran.nama_pembayaran','user_records.jumlah_bayar','user_records.created_at']);
+        return view('user.riwayat',compact('data'));
     }
 
     public function resetpassword(){

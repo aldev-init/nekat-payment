@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\AdminData;
 use Illuminate\Support\Facades\Auth;
 use App\Models\KelasModel;
+use App\Models\UserDataModel;
 use App\Models\JurusanModel;
 
 class AdminSystemController extends Controller
@@ -63,6 +64,12 @@ class AdminSystemController extends Controller
         $jurusan->jurusan = $request->jurusan;
         $jurusan->save();
         return redirect('/admin/kelasjurusan')->with('status','Tambah Data Jurusan Berhasil');
+    }
+    public function search(Request $request){
+        $data= UserDataModel::where('nama_lengkap','like',"%".$request->nama_lengkap."%")->paginate();
+        $kelas = KelasModel::all();
+        $jurusan = JurusanModel::all();
+        return view('admin.datasiswa',compact('data','kelas','jurusan'));
     }
 
     // public function registersystem(Request $request){

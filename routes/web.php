@@ -22,6 +22,7 @@ Route::get('/panduanaplikasi','UserPagesController@panduanaplikasi');
 Route::middleware(['auth'])->group(function(){
     Route::get('/pembayaran','UserPagesController@getformpembayaran');
     Route::get('/profile','UserSystemController@profile');
+    Route::get('/riwayat','UserPagesController@riwayat');
     Route::get('/editprofile/{id}','UserSystemController@editprofile');
 });
 
@@ -40,6 +41,8 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin/datasiswa','AdminPagesController@dataSiswa');
     Route::get('/admin/riwayat','AdminPagesController@riwayat');
     Route::get('/admin/kelasjurusan','AdminPagesController@kelasjurusan');
+    Route::get('/admin/transaksisiswa','AdminPagesController@riwayat');
+    Route::get('/admin/nominalpembayaran','AdminPagesController@nominalpembayaran');
     //crud Admin datasiswa
     Route::get('/admin/datasiswa/tambahdata','AdminPagesController@tambahData');
     Route::get('/admin/datasiswa/delete/{id}','AdminDataController@destroy');
@@ -56,6 +59,7 @@ Route::middleware(['admin'])->group(function(){
 //post datasiswa
 Route::post('/admin/datasiswa/tambahdata','AdminDataController@create');
 Route::post('/admin/datasiswa/editdata/{id}',"AdminDataController@edit");
+Route::post('/admin/datasiswa/search','AdminSystemController@search');
 
 //post kelas
 Route::post('/admin/kelas/tambahkelas','AdminSystemController@tambahkelas');

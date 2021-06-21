@@ -15,14 +15,15 @@
 <div class="row gutters">
 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 <div class="card h-100">
+    @foreach ($data as $dt )
 	<div class="card-body">
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
 					<img src="{{asset('images/logo/iconuser.png')}}" alt="Maxwell Admin">
 				</div>
-				<h5 class="user-name">{{$datauser['nama_lengkap']}}</h5>
-				<h6 class="user-email" style="font-size: 12px">{{$datauser['email']}}</h6>
+				<h5 class="user-name">{{$dt->nama_lengkap}}</h5>
+				<h6 class="user-email" style="font-size: 12px">{{$dt->email}}</h6>
 			</div>
 			<div class="about" style="margin-top:50px;">
 				<h5>Profile</h5>
@@ -34,7 +35,7 @@
 </div>
 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 <div class="card h-100">
-	<form action="/editprofile/{{$datauser['id']}}" method="POST">
+    <form action="/editprofile/{{$dt->id}}" method="POST">
         @csrf
         <div class="card-body">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -44,27 +45,27 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="nama_lengkap"><strong>Nama Lengkap: </strong></label>
-                        <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Masukan Nama Lengkap" value="{{$datauser['nama_lengkap']}}">
+                        <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Masukan Nama Lengkap" value="{{$dt->nama_lengkap}}">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="password"><strong>Password:</strong></label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Masukan Password" value="{{$datauser['password']}}">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Masukan Password" value="{{$dt->password}}">
                         <input type="checkbox" id="passwordfeature" onclick="passwordFeature()"> Show Password
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="phone"><strong>Alamat: </strong></label>
-                        <textarea name="alamat" id="" cols="30" rows="4" placeholder="Masukan Alamat" class="form-control" id="alamat">{{$datauser['alamat']}}</textarea>
-                        {{-- <input type="text" name="alamat" class="form-control" id="phone" placeholder="Masukan Alamat" value="{{$datauser['alamat']}}"> --}}
+                        <textarea name="alamat" id="" cols="30" rows="4" placeholder="Masukan Alamat" class="form-control" id="alamat">{{$dt->alamat}}</textarea>
+                        {{-- <input type="text" name="alamat" class="form-control" id="phone" placeholder="Masukan Alamat" value="{{$dt['alamat']}}"> --}}
                     </div>
                 </div>
                 {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Masukan alamat" value="{{$datauser['alamat']}}">
+                        <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Masukan alamat" value="{{$dt['alamat']}}">
                     </div>
                 </div> --}}
             </div>
@@ -75,25 +76,25 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" style="transform: translate(0px,15px)">
                     <div class="form-group">
                         <label for="Street"><strong>NISN: </strong></label>
-                        <p>{{$datauser['nisn']}}</p>
+                        <p>{{$dt->nisn}}</p>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" style="margin-top:-135px;">
                     <div class="form-group">
                         <label for="kelas"><strong>Kelas: </strong></label><br>
-                        <p>{{$kelas[$datauser['id_kelas']-1]->kelas}}</p>
+                        <p>{{$dt->kelas}}</p>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" style="transform: translate(410px,-60px);">
                     <div class="form-group">
                         <label for="sTate"><strong>NIS: </strong></label>
-                        <p>{{$datauser['nis']}}</p>
+                        <p>{{$dt->nis}}</p>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" style="margin-top:-135px;">
                     <div class="form-group">
                         <label for="jurusan"><strong>Jurusan: </strong></label><br>
-                        <p>{{$jurusan[$datauser['id_jurusan']-1]->jurusan}}</p>
+                        <p>{{$dt->jurusan}}</p>
                     </div>
                 </div>
             </div>
@@ -107,6 +108,7 @@
             </div>
         </div>
     </form>
+    @endforeach
 </div>
 </div>
 </div>
