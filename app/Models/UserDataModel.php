@@ -12,8 +12,15 @@ class UserDataModel extends Authenticatable
 
     protected $table = 'user_data';
     protected $fillable = [
+        'nama_lengkap',
+        'email',
+        'alamat',
+        'nisn',
         'nis',
-        'password'
+        'id_kelas',
+        'id_jurusan',
+        'password',
+        'role',
     ];
 
     public $timestamps = false;

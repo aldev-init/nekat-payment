@@ -12,6 +12,8 @@ use App\Models\NominalPembayaran;
 use App\Models\UserRecordModel;
 use App\Models\BulanModel;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\DataSiswaImport;
 
 class AdminSystemController extends Controller
 {
@@ -194,6 +196,24 @@ class AdminSystemController extends Controller
                                 'nominal_pembayaran.nama_pembayaran','user_records.jumlah_bayar','user_records.created_at']);
         $kelas = KelasModel::all();
         return view('admin.transaksisiswa',compact('data','kelas','oldselect'));
+    }
+
+    public function importexcel(Request $request){
+        //validasi file harus bertype csv,xls,xlsx
+        request()->validate([
+            'file'=>'required|mimes:csv,xls,xlsx',
+        ]);
+
+        //menangkap file dan memasukan ke variable file
+        $file = $request->file('file');
+        //random nama file
+        $namafile = rand().$file->getClientOriginalName();
+        //upload file ke folder public
+        $file->move('file_import',$namafile);
+        //import data
+        Excel::import(new DataSiswaImport,public_path('/file_import/'.$namafile));
+
+        return redirect('/admin/datasiswa');
     }
 
     // public function printPDF(){

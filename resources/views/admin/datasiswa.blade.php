@@ -7,6 +7,16 @@
             display: inline;
         }
 
+        .scroll {
+            display: block;
+            border: 1px solid rgb(83, 74, 74);
+            padding: 5px;
+            margin-top: 5px;
+            width: 100%;
+            height: 200px;
+            overflow: scroll;
+        }
+
     </style>
     <div class="wrapper">
         <!-- Main Sidebar Container -->
@@ -39,7 +49,8 @@
                                 <button class="btn btn-block btn-success" data-target="#tambahdata" data-toggle="modal"
                                     style="width: 150px; margin-bottom:10px;">Tambah Data</button>
                                 <button class="btn btn-block btn-success" data-target="#import" data-toggle="modal"
-                                    style="width: 150px; margin-left:170px; margin-top:-48px; margin-bottom:10px;">Import Csv/Excel</button>
+                                    style="width: 150px; margin-left:170px; margin-top:-48px; margin-bottom:10px;">Import
+                                    Csv/Excel</button>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -150,9 +161,9 @@
                     </tr>
                     </tfoot> --}}
                                 </table>
-                <div class="box-footer clearfix">
-                    {!! $data->render() !!}
-                  </div>
+                                <div class="box-footer clearfix">
+                                    {!! $data->render() !!}
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -468,36 +479,56 @@
     {{-- popup import csv/excel --}}
     <div class="modal fade" id="import">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Import Csv\Excel</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Import Csv\Excel</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="scroll">
+                        <h5>Panduan Import</h5>
+                        <h6>Kolom Kelas Dan Jurusan</h6>
+                        <ul>
+                            <li>
+                                kelas
+                                <p>Masukan kolom Kelas Berdasarkan Nomor id Sesuai data pada database,pada file excel/csv
+                                </p>
+                                <p>Contoh:<strong>[0] untuk X RPL 1</strong></p>
+                                <ul>
+                                    @foreach ($kelas as $kls)
+                                        <li>[{{ $kls->id }}].{{ $kls->kelas }}</li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <li>
+                                Jurusan
+                                <p>Masukan kolom Jurusan Berdasarkan Nomor id Sesuai data pada database,pada file excel/csv
+                                </p>
+                                <p>Contoh: <strong>[7] untuk RPL</strong></p>
+                                <ul>
+                                    @foreach ($jurusan as $jrsn)
+                                        <li>[{{ $jrsn->id }}].{{ $jrsn->jurusan }}</li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <form action="/admin/datasiswa/import" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="file" id="file" class="form-control">
+                        @error('file')
+                            <p>Kesalahan Ekstension Pastikan File Bertype: csv,xls,xlsx</p>
+                        @enderror
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
             </div>
-            <div class="modal-body">
-                <h5>Panduan Import</h5>
-                <h6>Kolom Kelas Dan Jurusan</h6>
-                <ul>
-                    <li>
-                        kelas
-                        <p>Masukan kolom Kelas Berdasarkan Nomor id Sesuai data pada database,pada file excel/csv</p>
-                        <p>Contoh:<strong>[0] untuk X RPL 1</strong></p>
-                    </li>
-                    <li>
-                        Jurusan
-                        <p>Masukan kolom Jurusan Berdasarkan Nomor id Sesuai data pada database,pada file excel/csv</p>
-                        <p>Contoh: <strong>[7] untuk RPL</strong></p>
-                    </li>
-                </ul>
-              <input type="file" name="file" id="file" class="form-control">
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
+            <!-- /.modal-content -->
         </div>
     </div>
 
