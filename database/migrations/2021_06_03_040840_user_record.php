@@ -22,6 +22,7 @@ class UserRecord extends Migration
             $table->integer('keterangan_pembayaran');
             $table->integer('jumlah_bayar');
             $table->timestamp('created_at');
+            $table->year('tahun');
         });
     }
 

@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="{{asset('template')}}/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('template')}}/plugins/summernote/summernote-bs4.min.css">
+  {{-- icon tab --}}
+  <link rel="shortcut icon" href="{{asset('img/smkn1katapang.png')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
@@ -169,6 +171,9 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li> --}}
+        @if (Request::is('admin/rekap'))
+            <button class="nav-link btn btn-primary" data-toggle="modal" data-target="#panduanrekappdf" >Panduan</button>
+        @endif
       <li class="nav-item">
           <a class="nav-link" href="/admin/logout">Logout</a>
       </li>
@@ -225,7 +230,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link {{(request()->is('admin/rekap')) ? 'active':''}}">
+            <a href="/admin/rekap" class="nav-link {{(request()->is('admin/rekap')) ? 'active':''}}">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Rekapan
@@ -233,7 +238,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link {{(request()->is('admin/nominalpembayaran')) ? 'active':''}}">
+            <a href="/admin/nominalpembayaran" class="nav-link {{(request()->is('admin/nominalpembayaran')) ? 'active':''}}">
               <i class="nav-icon fas fa-dollar-sign"></i>
               <p>
                 Nominal Pembayaran

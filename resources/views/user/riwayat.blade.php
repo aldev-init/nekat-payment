@@ -26,7 +26,7 @@
             <div class="row d-lg-flex justify-content-center">
                 <div class="col-lg-12">
 
-                    <h2>Riayat Transaksi</h2>
+                    <h2>Riwayat Transaksi</h2>
                     <!-- <h3>[CARD STYLE]</h3> -->
                     <div id="tagihan-list">
                         @foreach ($data as $dt )

@@ -38,6 +38,8 @@
                             <div class="card-body">
                                 <button class="btn btn-block btn-success" data-target="#tambahdata" data-toggle="modal"
                                     style="width: 150px; margin-bottom:10px;">Tambah Data</button>
+                                <button class="btn btn-block btn-success" data-target="#import" data-toggle="modal"
+                                    style="width: 150px; margin-left:170px; margin-top:-48px; margin-bottom:10px;">Import Csv/Excel</button>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -307,7 +309,6 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" placeholder="Masukan password"
                                     name="password" required>
-                                <input type="checkbox" onclick="passwordFeature()">Show Password
                             </div>
                         </div>
                     </div>
@@ -428,7 +429,6 @@
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" placeholder="Masukan password"
                                         name="password" value="{{ $dt->password }}">
-                                    <input type="checkbox" class="show">Show Password
                                 </div>
                             </div>
                         </div>
@@ -464,6 +464,42 @@
             </div>
         </div>
     @endforeach
+
+    {{-- popup import csv/excel --}}
+    <div class="modal fade" id="import">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Import Csv\Excel</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h5>Panduan Import</h5>
+                <h6>Kolom Kelas Dan Jurusan</h6>
+                <ul>
+                    <li>
+                        kelas
+                        <p>Masukan kolom Kelas Berdasarkan Nomor id Sesuai data pada database,pada file excel/csv</p>
+                        <p>Contoh:<strong>[0] untuk X RPL 1</strong></p>
+                    </li>
+                    <li>
+                        Jurusan
+                        <p>Masukan kolom Jurusan Berdasarkan Nomor id Sesuai data pada database,pada file excel/csv</p>
+                        <p>Contoh: <strong>[7] untuk RPL</strong></p>
+                    </li>
+                </ul>
+              <input type="file" name="file" id="file" class="form-control">
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+    </div>
 
     <script>
         //FIXME

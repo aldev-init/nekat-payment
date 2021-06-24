@@ -92,6 +92,20 @@
     <div class="container">
         {{-- <h2>Responsive Tables Using LI <small>Triggers on 767px</small></h2> --}}
         <ul class="responsive-table">
+            <li class="table-header" style="height: 90px;">
+                <form action="/admin/transaksi/custom" method="POST">
+                    @csrf
+                    <select name="kelas" id="kelas" class="form-control" style="width: 120px;">
+                        @foreach ($kelas as $kls )
+                            <option value="{{$kls->id}}" {{($oldselect == $kls->id) ? 'selected':''}}>{{$kls->kelas}}</option>
+                        @endforeach
+                    </select>
+                    <button type="submit" class="btn btn-success" style="margin-left: 125px; margin-top:-62px;">Apply</button>
+                </form>
+                <form action="/admin/transaksisiswa" method="GET">
+                    <button type="submit" class="btn btn-warning" style="margin-left: -680px; margin-top:0px;">Reset</button>
+                </form>
+            </li>
             <li class="table-header">
                 <div class="col">Nama</div>
                 <div class="col">Kelas</div>

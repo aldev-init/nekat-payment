@@ -91,5 +91,6 @@
     <script src="{{asset('js')}}/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="{{asset('js')}}/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
     <script src="{{asset('js')}}/scripts.js"></script> <!-- Custom scripts -->
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="45c553c6-a182-49f4-b3fd-66f8ab169244";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </body>
 </html>

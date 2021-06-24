@@ -224,7 +224,7 @@
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Email Notifikasi</h4>
-                            <p>Dapatkan email notifikasi,untuk konfirmasi pembayaran,verifikasi, dan ubah password.</p>
+                            <p>Dapatkan email notifikasi,untuk konfirmasi pembayaran.</p>
                             {{-- <a class="read-more no-line" href="article.html">Learn more <span class="fas fa-long-arrow-alt-right"></span></a> --}}
                         </div>
                     </div>

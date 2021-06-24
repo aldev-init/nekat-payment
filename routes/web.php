@@ -19,7 +19,7 @@ Route::get('/login','UserPagesController@getformlogin')->name('login');
 Route::get('/forgotpassword','UserPagesController@resetpassword');
 Route::get('/panduanaplikasi','UserPagesController@panduanaplikasi');
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth','cantback'])->group(function(){
     Route::get('/pembayaran','UserPagesController@getformpembayaran');
     Route::get('/profile','UserSystemController@profile');
     Route::get('/riwayat','UserPagesController@riwayat');
@@ -34,15 +34,18 @@ Route::post('/login','UserSystemController@loginsystem');
 Route::post('/editprofile/{id}','UserSystemController@editprofile');
 
 
+
+
 //admin
 Route::get('/admin/login','AdminPagesController@loginform')->name('admin/login');
-Route::middleware(['admin'])->group(function(){
+Route::middleware(['admin','cantback'])->group(function(){
     Route::get('/admin/beranda','AdminPagesController@beranda');
     Route::get('/admin/datasiswa','AdminPagesController@dataSiswa');
     Route::get('/admin/riwayat','AdminPagesController@riwayat');
     Route::get('/admin/kelasjurusan','AdminPagesController@kelasjurusan');
     Route::get('/admin/transaksisiswa','AdminPagesController@riwayat');
     Route::get('/admin/nominalpembayaran','AdminPagesController@nominalpembayaran');
+    Route::get('/admin/rekap','AdminPagesController@rekap');
     //crud Admin datasiswa
     Route::get('/admin/datasiswa/tambahdata','AdminPagesController@tambahData');
     Route::get('/admin/datasiswa/delete/{id}','AdminDataController@destroy');
@@ -54,6 +57,18 @@ Route::middleware(['admin'])->group(function(){
     //crud admin jurusan
     Route::get('/admin/jurusan/delete/{id}','AdminSystemController@hapusjurusan');
     Route::post('/admin/jurusan/edit/{id}','AdminSystemController@ubahjurusan');
+    //crud admin nominal pembayaran
+    Route::post('/admin/nominalpembayaran/tambahpembayaran','AdminSystemController@tambahpembayaran');
+    Route::get('/admin/nominalpembayaran/delete/{id}','AdminSystemController@hapuspembayaran');
+    Route::post('/admin/nominalpembayaran/edit/{id}','AdminSystemController@editpembayaran');
+    //crud rekap
+    Route::post('/admin/rekap/custom/','AdminSystemController@customrekap');
+    //crud riwayat transaksi
+    Route::post('/admin/transaksi/custom','AdminSystemController@customtransaksi');
+    //load view pdf sekaligus print
+    Route::get('/admin/pdfrekap','AdminPagesController@loadview');
+    //Print PDF
+    // Route::get('/admin/rekap/pdf','AdminSystemController@printPDF')->name('print');
 });
 
 //post datasiswa

@@ -46,7 +46,7 @@
                                                 <form action="/admin/kelas/tambahkelas" method="POST">
                                                     @csrf
                                                     <input type="text" name="kelas">
-                                                    <button style="submit">Tambah Kelas</button>
+                                                    <button style="submit" class="btn btn-success btn-sm">Tambah Kelas</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                                     <form action="/admin/kelas/edit/{{ $kls->id }}" method="POST">
                                                         @csrf
                                                         <input type="text" name="kelas" value="{{ $kls->kelas }}">
-                                                        <button style="submit">Tambah Kelas</button>
+                                                        <button style="submit" class="btn btn-warning btn-sm">Edit Kelas</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -122,7 +122,7 @@
                                                 <form action="/admin/jurusan/tambahjurusan" method="POST">
                                                     @csrf
                                                     <input type="text" name="jurusan">
-                                                    <button style="submit">Tambah Jurusan</button>
+                                                    <button style="submit" class="btn btn-success btn-sm">Tambah Jurusan</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -140,7 +140,7 @@
                                                     <form action="/admin/jurusan/edit/{{ $jrsn->id }}" method="POST">
                                                         @csrf
                                                         <input type="text" name="jurusan" value="{{ $jrsn->jurusan }}">
-                                                        <button style="submit">Edit Jurusan</button>
+                                                        <button style="submit" class="btn btn-warning btn-sm">Edit Jurusan</button>
                                                     </form>
                                                 </div>
                                             </div>

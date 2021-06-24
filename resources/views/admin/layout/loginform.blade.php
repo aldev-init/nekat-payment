@@ -43,14 +43,11 @@
                             </div>
                             <div class="form-group d-md-flex">
                                 <div class="w-50">
-                                    <label class="checkbox-wrap checkbox-primary">Ingat Saya
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                    <p>Login <a href="/login">Siswa</a></p>
                                 </div>
-                                <div class="w-50 text-md-right">
+                                {{-- <div class="w-50 text-md-right">
                                     <a href="#">Lupa Password</a>
-                                </div>
+                                </div> --}}
                             </div>
                         </form>
                     </div>
