@@ -10,6 +10,7 @@ use App\Models\JurusanModel;
 use App\Models\UserRecordModel;
 use App\Models\NominalPembayaran;
 use App\Models\BulanModel;
+use App\Models\TodoModel;
 use PDO;
 
 class AdminPagesController extends Controller
@@ -27,7 +28,9 @@ class AdminPagesController extends Controller
         $jumlahjurusan = count($jurusan);
         $userrecords = UserRecordModel::all();
         $jumlahtransaksi = count($userrecords);
-        return view('admin.beranda',compact('jumlahsiswa','jumlahkelas','jumlahjurusan','jumlahtransaksi'));
+        $todo = TodoModel::where('status','=','belum')->get();
+        $todoselesai = TodoModel::where('status','=','selesai')->paginate(5);
+        return view('admin.beranda',compact('jumlahsiswa','jumlahkelas','jumlahjurusan','jumlahtransaksi','todo','todoselesai'));
     }
 
     public function loginform(){

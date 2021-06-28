@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\UserDataModel;
 use App\Models\KelasModel;
 use App\Models\jurusanModel;
+use App\Models\NominalPembayaran;
+use App\Models\BulanModel;
 use Illuminate\Support\Facades\Auth;
 
 class UserSystemController extends Controller
@@ -78,5 +80,51 @@ class UserSystemController extends Controller
     public function logout(){
         Auth::logout();
         return redirect('/')->with('login','Logout Berhasil');
+    }
+
+    public function payment(Request $request){
+        $keteranganpembayaran = $request->nama_pembayaran;
+        $alamat = $request->alamat;
+        $bulan = BulanModel::all();
+        $nominalpembayaran = NominalPembayaran::all();
+
+        //pembayaran spp request
+        $bulan_request = $request->bulan;
+        $nominalpembayaran_request = $request->nominal_pembayaran;
+
+        $name = explode(' ',Auth::user()->nama_lengkap);
+        $email = Auth::user()->email;
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-t64-Cn6TwrReYWZzi1AIoxKl';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $request->nominal_pembayaran,
+                'name' => $request->nama_pembayaran,
+            ),
+        );
+        // $items = array(
+        //     'name' =>  $request->nama_pembayaran,
+        //     'price' => $request->nominal_pembayaran
+        // );
+        // $customer_details = array(
+        //     'first_name' => $name[0],
+        //     'last_name' => $name[1],
+        //     'email' => $email,
+        // );
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        return view('user.pembayaran',compact('snapToken','nominalpembayaran','keteranganpembayaran','bulan','bulan_request','nominalpembayaran_request'));
+    }
+
+    public function paymentfinish(Request $request){
+        dd(Input::all());
+        //pikirkan bagaimana mengirimkan riwayat transaksi saat payment midtrans success
     }
 }

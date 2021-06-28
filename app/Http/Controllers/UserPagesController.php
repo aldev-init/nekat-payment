@@ -8,6 +8,7 @@ use App\Models\KelasModel;
 use App\Models\jurusanModel;
 use App\Models\NominalPembayaran;
 use App\Models\UserRecordModel;
+use App\Models\BulanModel;
 use Illuminate\Support\Facades\Auth;
 
 class UserPagesController extends Controller
@@ -39,7 +40,8 @@ class UserPagesController extends Controller
 
     public function getformpembayaran(){
         $nominalpembayaran = NominalPembayaran::all();
-        return view('user.pembayaran',compact('nominalpembayaran'));
+        $bulan = BulanModel::all();
+        return view('user.pembayaran',compact('nominalpembayaran','bulan'));
     }
 
     public function riwayat(){
@@ -58,5 +60,9 @@ class UserPagesController extends Controller
 
     public function resetpassword(){
         return view('user.forgotpassword');
+    }
+
+    public function panduanaplikasi(){
+        return view('user.panduanaplikasi');
     }
 }

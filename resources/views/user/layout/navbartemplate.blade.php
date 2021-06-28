@@ -13,6 +13,7 @@
     <link href="{{asset('css')}}/swiper.css" rel="stylesheet">
 	<link href="{{asset('css')}}/magnific-popup.css" rel="stylesheet">
 	<link href="{{asset('css')}}/styles.css" rel="stylesheet">
+    @yield('js_head')
 </head>
 <body style="background-image: url({{asset('images/header-background.png')}})">
     <nav class="navbar navbar-expand-lg fixed-top navbar-light">
@@ -22,15 +23,15 @@
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Nekat Payment</a> -->
 
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="/"><img src="images/logoktp.png" alt="alternative" style="height: 50px;"></a>
+            <a class="navbar-brand logo-image" href="/"><img src="{{asset('img/smkn1katapang.png')}}" alt="alternative" style="height: 50px;"></a>
             <a class="navbar-brand logo-text page-scroll" href="/">Nekat Payment</a>
             <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-                @if (!Request::url('/pembayaran'))
                 <ul class="navbar-nav ml-auto">
+                    @if (!Request::url('/pembayaran'))
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#header">Beranda <span class="sr-only">(current)</span></a>
                     </li>
@@ -38,7 +39,7 @@
                         <a class="nav-link page-scroll" href="#intro">Tentang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="">Panduan Aplikasi</a>
+                        <a class="nav-link page-scroll" href="/panduanaplikasi">Panduan Aplikasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#features">Fitur Kami</a>
@@ -53,8 +54,13 @@
                             {{-- <a class="dropdown-item page-scroll" href="privacy.html">Privacy Policy</a> --}}
                         </div>
                     </li>
+                    @endif
+                    @if (Request::url('/pembayaran'))
+                    <li class="nav-item" style="transform: translate(50pc,10pc);">
+                        <a class="nav-link page-scroll" href="/pembayaran">Reset</a>
+                    </li>
+                    @endif
                 </ul>
-                @endif
                 @guest
                 <span>
                     <a href="/login">Login</a>
@@ -91,6 +97,7 @@
     <script src="{{asset('js')}}/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="{{asset('js')}}/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
     <script src="{{asset('js')}}/scripts.js"></script> <!-- Custom scripts -->
+    {{-- //crisp --}}
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="45c553c6-a182-49f4-b3fd-66f8ab169244";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </body>
 </html>

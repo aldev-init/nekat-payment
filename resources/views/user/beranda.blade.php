@@ -57,7 +57,7 @@
                         <a class="nav-link page-scroll" href="#intro">Tentang Aplikasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="">Panduan Aplikasi</a>
+                        <a class="nav-link page-scroll" href="/panduanaplikasi">Panduan Aplikasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#features">Fitur Kami</a>
@@ -500,6 +500,7 @@
             alert(message);
         }
     </script>
+     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="45c553c6-a182-49f4-b3fd-66f8ab169244";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </body>
 </html>
 

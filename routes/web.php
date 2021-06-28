@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //user
 Route::get('/','UserPagesController@beranda');
 Route::get('/login','UserPagesController@getformlogin')->name('login');
-Route::get('/forgotpassword','UserPagesController@resetpassword');
+// Route::get('/forgotpassword','UserPagesController@resetpassword');
 Route::get('/panduanaplikasi','UserPagesController@panduanaplikasi');
 
 Route::middleware(['auth','cantback'])->group(function(){
@@ -33,6 +33,9 @@ Route::post('/login','UserSystemController@loginsystem');
 
 Route::post('/editprofile/{id}','UserSystemController@editprofile');
 
+//User Payment
+Route::post('/pembayaran/bayar','UserSystemController@payment');
+Route::get('/pembayaran/selesai','UserSystemController@paymentfinish')->name('selesai');
 
 
 
@@ -71,6 +74,10 @@ Route::middleware(['admin','cantback'])->group(function(){
     Route::get('/admin/pdfrekap','AdminPagesController@loadview');
     //Print PDF
     // Route::get('/admin/rekap/pdf','AdminSystemController@printPDF')->name('print');
+    //crud todolist
+    Route::post('/admin/todo/tambah','AdminSystemController@tambahtodo');
+    Route::get('/admin/todo/delete/{id}','AdminSystemController@hapustodo');
+    Route::get('/admin/todo/selesai/{id}','AdminSystemController@todoselesai');
 });
 
 //post datasiswa

@@ -14,6 +14,7 @@ use App\Models\BulanModel;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataSiswaImport;
+use App\Models\TodoModel;
 
 class AdminSystemController extends Controller
 {
@@ -214,6 +215,26 @@ class AdminSystemController extends Controller
         Excel::import(new DataSiswaImport,public_path('/file_import/'.$namafile));
 
         return redirect('/admin/datasiswa');
+    }
+
+    public function tambahtodo(Request $request){
+        $todo = new TodoModel();
+        $todo -> nama_kegiatan = $request->nama_kegiatan;
+        $todo -> status = 'belum';
+        $todo -> save();
+        return redirect('/admin/beranda');
+    }
+
+    public function hapustodo($id){
+        $todo = TodoModel::where('id','=',$id)->delete();
+        return redirect('/admin/beranda');
+    }
+
+    public function todoselesai($id){
+        $todo = TodoModel::where('id','=',$id)->update([
+            'status'=> 'selesai',
+        ]);
+        return redirect('/admin/beranda');
     }
 
     // public function printPDF(){
