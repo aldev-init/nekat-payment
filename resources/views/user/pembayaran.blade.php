@@ -69,7 +69,7 @@ data-client-key="SB-Mid-client-FjGobZARAFBW189q"></script>
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input pilih-tagihan" id="customCheck1">
                                         {{-- <label class="custom-control-label" for="customCheck1"> --}}
-                                                <input type="hidden" name="nama_pembayaran" value="{{$nm->nama_pembayaran}}">
+                                                <input type="hidden" name="nama_pembayaran" value="{{$nm->id}}">
                                                 <input type="hidden" name="nominal_pembayaran" value="{{$nm->nominal_pembayaran}}">
                                                 @endforeach
                                                 <button type="submit" class="btn btn-block btn-outline-primary">Pilih Pembayaran</button>
@@ -242,7 +242,7 @@ data-client-key="SB-Mid-client-FjGobZARAFBW189q"></script>
 
 
     {{-- Hidden Request --}}
-    @isset($bulan_request,$keteranganpembayaran,$nominalpembayaran_request)
+    {{-- @isset($bulan_request,$keteranganpembayaran,$nominalpembayaran_request)
     <form action="/pembayaran/selesai" method="POST" id="hiddenrequest">
         <input type="text" name="nama_pembayaran" value="{{$keteranganpembayaran}}" hidden>
         <input type="text" name="nominal_pembayaran" value="{{$nominalpembayaran_request}}" hidden>
@@ -250,9 +250,7 @@ data-client-key="SB-Mid-client-FjGobZARAFBW189q"></script>
         <button type="submit" onclick="request()" hidden></button>
     </form>
     <script type="text/javascript">
-    @endisset
-
-    </script>
+    @endisset --}}
     <script type="text/javascript">
         var payButton = document.getElementById('pay-button');
         // For example trigger on button clicked, or any time you need
@@ -260,16 +258,20 @@ data-client-key="SB-Mid-client-FjGobZARAFBW189q"></script>
             @isset($snapToken)
             window.snap.pay('{{$snapToken}}',{
                 onSuccess:function(){
-                    //FIXME
-                    //pikirkan cara oper data ke finish payment
-                    function request(){
-                        document.getElementById('hiddenrequest').submit();
-                    }
-                    document.location = '{{route("selesai")}}';
+                    window.location.href = '{{route("selesai",["bulan" => $bulan_request , "nama" => $keteranganpembayaran , "nominal" => $nominalpembayaran_request])}}';
+                },
+                onError:function(){
+                    alert('Maaf Terjadi Kesalahan,Mohon coba Kembali dalam 1-2 Menit');
                 }
             });
             @endisset
           window.snap.pay('SNAP_TRANSACTION_TOKEN'); // Replace it with your transaction token
         });
+
+        var message = '{{Session::get("alert")}}';
+        var exist = '{{Session::has("alert")}}';
+        if(exist){
+            alert(message);
+        }
       </script>
 @endsection

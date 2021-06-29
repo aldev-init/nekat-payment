@@ -8,6 +8,7 @@ use App\Models\KelasModel;
 use App\Models\jurusanModel;
 use App\Models\NominalPembayaran;
 use App\Models\BulanModel;
+use App\Models\UserRecordModel;
 use Illuminate\Support\Facades\Auth;
 
 class UserSystemController extends Controller
@@ -123,8 +124,27 @@ class UserSystemController extends Controller
         return view('user.pembayaran',compact('snapToken','nominalpembayaran','keteranganpembayaran','bulan','bulan_request','nominalpembayaran_request'));
     }
 
-    public function paymentfinish(Request $request){
-        dd(Input::all());
+    public function paymentfinish(){
+        //change timezone for function Date()
+        date_default_timezone_set('Asia/Jakarta');
+
+        $bulan = $_GET['bulan'];
+        //nama bawaan dari $_GET
+        $namapembayaran = $_GET['amp;nama'];
+        $nominal = $_GET['amp;nominal'];
+
+        //insert riwayat transaksi
+        $data = UserRecordModel::insert([
+            'id_nama' => Auth::user()->id,
+            'id_kelas' => Auth::user()->id_kelas,
+            'id_jurusan' => Auth::user()->id_jurusan,
+            'id_bulan' => $bulan,
+            'keterangan_pembayaran' => $namapembayaran,
+            'jumlah_bayar' => $nominal,
+            'created_at' => date('Y-m-d H:i:s'),
+            'tahun' => date('Y'),
+        ]);
+        return redirect('/pembayaran')->with('alert','Transaksi Selesai');
         //pikirkan bagaimana mengirimkan riwayat transaksi saat payment midtrans success
     }
 }
