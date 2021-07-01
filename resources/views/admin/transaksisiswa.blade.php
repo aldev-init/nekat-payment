@@ -92,7 +92,7 @@
     <div class="container">
         {{-- <h2>Responsive Tables Using LI <small>Triggers on 767px</small></h2> --}}
         <ul class="responsive-table">
-            <li class="table-header" style="height: 90px;">
+            <li class="table-header" style="height: 90px; background-color: #3498db;">
                 <form action="/admin/transaksi/custom" method="POST">
                     @csrf
                     <select name="kelas" id="kelas" class="form-control" style="width: 120px;">

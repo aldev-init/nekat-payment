@@ -4,7 +4,7 @@
 @section('content')
 <style>
     .container-panduan{
-        margin: 150px 50px;
+        margin: 150px 120px;
     }
     .sub-ul{
         list-style: none;

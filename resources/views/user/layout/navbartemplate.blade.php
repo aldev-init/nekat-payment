@@ -14,6 +14,9 @@
 	<link href="{{asset('css')}}/magnific-popup.css" rel="stylesheet">
 	<link href="{{asset('css')}}/styles.css" rel="stylesheet">
     @yield('js_head')
+
+    {{-- favicon --}}
+    <link rel="icon" href="{{asset('images/logoktp.png')}}">
 </head>
 <body style="background-image: url({{asset('images/header-background.png')}})">
     <nav class="navbar navbar-expand-lg fixed-top navbar-light">
