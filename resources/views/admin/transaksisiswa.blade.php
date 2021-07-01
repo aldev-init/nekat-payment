@@ -100,10 +100,10 @@
                             <option value="{{$kls->id}}" {{($oldselect == $kls->id) ? 'selected':''}}>{{$kls->kelas}}</option>
                         @endforeach
                     </select>
-                    <button type="submit" class="btn btn-success" style="margin-left: 125px; margin-top:-62px;">Apply</button>
+                    <button type="submit" class="btn btn-success" style="margin-left: 725px; margin-top:-62px;">Apply</button>
                 </form>
                 <form action="/admin/transaksisiswa" method="GET">
-                    <button type="submit" class="btn btn-warning" style="margin-left: -680px; margin-top:0px;">Reset</button>
+                    <button type="submit" class="btn btn-warning" style="margin-left: -80px; margin-top:0px;">Reset</button>
                 </form>
             </li>
             <li class="table-header">

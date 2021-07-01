@@ -12,9 +12,11 @@ use App\Models\NominalPembayaran;
 use App\Models\UserRecordModel;
 use App\Models\BulanModel;
 use PDF;
+use Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\DataSiswaImport;
 use App\Models\TodoModel;
+use Illuminate\Validation\ValidationException;
 
 class AdminSystemController extends Controller
 {
@@ -146,7 +148,10 @@ class AdminSystemController extends Controller
             if(!empty($isCanPDF)){
                 //print to pdf
                 $pdf = PDF::loadview('admin.rekappdf',compact('data','currentClass','oldtahun','oldsemester'))->setPaper('A4','potrait');
-                return $pdf->stream();
+                //simpan file sementara pdf ke directory public
+                Storage::put('public/PDFrekap/rekapPDF.pdf', $pdf->output());
+                //donwload pdf
+                return $pdf->download('rekapPDF.pdf');
             }
         }
         return view('admin.rekap',compact('data','kelas','oldkelas','oldtahun','oldsemester'));
@@ -200,21 +205,30 @@ class AdminSystemController extends Controller
     }
 
     public function importexcel(Request $request){
-        //validasi file harus bertype csv,xls,xlsx
-        request()->validate([
-            'file'=>'required|mimes:csv,xls,xlsx',
-        ]);
+        //nama file random berdasarkan date
+        $waktu = date('Y-m-d');
+        $slice = explode('-',$waktu);
+        $hasil = join('',$slice);
+
+        $validext = ['xls','xlsx'];
+        $extensions = explode('.',$request->file('file')->getClientOriginalName())[1];
+        if(!in_array($extensions,$validext)){
+            return redirect('/admin/datasiswa')->with('status','Kesalahan File Ekstension,Gagal Import');
+        }
 
         //menangkap file dan memasukan ke variable file
         $file = $request->file('file');
         //random nama file
-        $namafile = rand().$file->getClientOriginalName();
+        $namafile = $hasil.$file->getClientOriginalName();
         //upload file ke folder public
         $file->move('file_import',$namafile);
         //import data
-        Excel::import(new DataSiswaImport,public_path('/file_import/'.$namafile));
-
-        return redirect('/admin/datasiswa');
+        $attr = Excel::import(new DataSiswaImport,public_path('/file_import/'.$namafile));
+        if($attr){
+            return redirect('/admin/datasiswa')->with('status','Import Berhasil');
+        }else{
+            return redirect('/admin/datasiswa')->with('status','Import Gagal');
+        }
     }
 
     public function tambahtodo(Request $request){

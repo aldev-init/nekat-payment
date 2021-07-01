@@ -54,7 +54,7 @@ $year = date('Y');
         @endforeach
         </tfoot>
       </table>
-      <button type="submit" class="nav-link btn btn-info btn-xs" value="pdf" name="pdf">Print PDF</button>
+      <button type="submit" class="nav-link btn btn-info btn-xs" value="pdf" name="pdf" formtarget="_blank">Print PDF</button>
     </form>
       <div class="container" style="margin-left:900px; margin-top:-20px;">
         {{$data->render()}}

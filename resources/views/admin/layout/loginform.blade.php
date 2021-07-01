@@ -31,10 +31,10 @@
                         <form action="@yield('action')" class="login-form" method="POST">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control rounded-left" placeholder="NIPD" name="nipd">
+                                <input type="text" class="form-control rounded-left" placeholder="NIPD" name="nipd" autocomplete="off">
                             </div>
                             <div class="form-group d-flex">
-                                <input type="password" class="form-control rounded-left" placeholder="Password" name="password">
+                                <input type="password" class="form-control rounded-left" placeholder="Password" name="password" autocomplete="off">
                             </div>
                             @yield('new_form')
                             <div class="form-group">

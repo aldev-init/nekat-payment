@@ -49,8 +49,7 @@
                                 <button class="btn btn-block btn-success" data-target="#tambahdata" data-toggle="modal"
                                     style="width: 150px; margin-bottom:10px;">Tambah Data</button>
                                 <button class="btn btn-block btn-success" data-target="#import" data-toggle="modal"
-                                    style="width: 150px; margin-left:170px; margin-top:-48px; margin-bottom:10px;">Import
-                                    Csv/Excel</button>
+                                    style="width: 150px; margin-left:170px; margin-top:-48px; margin-bottom:10px;">Import Excel</button>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -490,6 +489,7 @@
                     <div class="scroll">
                         <h5>Panduan Import</h5>
                         <h6>Kolom Kelas Dan Jurusan</h6>
+                        <p>Note: File Harus Bertype Excel</p>
                         <ul>
                             <li>
                                 kelas
@@ -519,7 +519,7 @@
                         @csrf
                         <input type="file" name="file" id="file" class="form-control">
                         @error('file')
-                            <p>Kesalahan Ekstension Pastikan File Bertype: csv,xls,xlsx</p>
+                            <p>Kesalahan Ekstension Pastikan File Bertype:xls,xlsx</p>
                         @enderror
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -533,18 +533,10 @@
     </div>
 
     <script>
-        //FIXME
-        // $(document).on('click', '.modal', function() {
-        //     alert('iam in function 1');
-        //     $(document).on('click','.show',function() {
-        //         alert('iam in function 2')
-        //         var password = document.getElementById('password');
-        //         if(password.type == 'password'){
-        //             password.type = 'text';
-        //         }else{
-        //             password.type = 'password';
-        //         }
-        //     })
-        // });
+        var message = '{{Session::get("status")}}';
+        var exist = '{{Session::has("status")}}';
+        if(exist){
+            alert(message);
+        }
     </script>
 @endsection

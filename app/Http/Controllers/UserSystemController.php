@@ -110,16 +110,12 @@ class UserSystemController extends Controller
                 'gross_amount' => $request->nominal_pembayaran,
                 'name' => $request->nama_pembayaran,
             ),
+            'customer_details' => array(
+                'first_name' => $name[0],
+                'last_name' => $name[1],
+                'email' => $email,
+            ),
         );
-        // $items = array(
-        //     'name' =>  $request->nama_pembayaran,
-        //     'price' => $request->nominal_pembayaran
-        // );
-        // $customer_details = array(
-        //     'first_name' => $name[0],
-        //     'last_name' => $name[1],
-        //     'email' => $email,
-        // );
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         return view('user.pembayaran',compact('snapToken','nominalpembayaran','keteranganpembayaran','bulan','bulan_request','nominalpembayaran_request'));
     }
