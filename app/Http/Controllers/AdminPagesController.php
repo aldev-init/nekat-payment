@@ -147,7 +147,7 @@ class AdminPagesController extends Controller
                                 ->join('bulan','user_records.id_bulan','=','bulan.id')
                                 ->join('nominal_pembayaran','user_records.keterangan_pembayaran','=','nominal_pembayaran.id')
                                 ->orderBy('bulan.id','asc')
-                                ->paginate(6,['user_data.nama_lengkap','kelas.kelas','jurusan.jurusan','bulan.bulan',
+                                ->paginate(6,['user_data.nama_lengkap','user_data.id_kelas','kelas.kelas','jurusan.jurusan','bulan.bulan',
                                 'nominal_pembayaran.nama_pembayaran','nominal_pembayaran.nominal_pembayaran','user_records.created_at']);
         $kelas = KelasModel::all();
         return view('admin.rekap',compact('data','kelas','oldkelas','oldtahun','oldsemester'));

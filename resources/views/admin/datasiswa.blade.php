@@ -48,8 +48,9 @@
                             <div class="card-body">
                                 <button class="btn btn-block btn-success" data-target="#tambahdata" data-toggle="modal"
                                     style="width: 150px; margin-bottom:10px;">Tambah Data</button>
-                                <button class="btn btn-block btn-success" data-target="#import" data-toggle="modal"
+                                <button class="btn btn-block btn-info" data-target="#import" data-toggle="modal"
                                     style="width: 150px; margin-left:170px; margin-top:-48px; margin-bottom:10px;">Import Excel</button>
+                                    <a href="/admin/datasiswa/export" class="btn btn-secondary" style="width: 150px; margin-left:340px; margin-top:-77px; margin-bottom:10px;">Export As Excel</a>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>

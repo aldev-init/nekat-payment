@@ -62,6 +62,13 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="assets/popperjs/dist/umd/popper.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        var message = '{{Session::get("alert")}}';
+        var exist = '{{Session::has("alert")}}';
+        if(exist){
+            alert(message);
+        }
+    </script>
 </body>
 
 </html>

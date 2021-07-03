@@ -84,6 +84,21 @@ class UserSystemController extends Controller
     }
 
     public function payment(Request $request){
+        //check data in user_records
+        $isExist = UserRecordModel::where('id_nama','=',$request->id_nama)
+                                    ->where('id_bulan','=',$request->bulan)
+                                    ->where('tahun','=',date('Y'))
+                                    ->get(['id_nama','id_bulan'])->first();
+        //if payment exist,return status
+        if(!empty($isExist)){
+            return redirect('/pembayaran')->with('status','Maaf Pembayaran Bulan Tersebut Sudah Ada');
+        }
+        //get name class from user login
+        $datauser = UserDataModel::join('kelas','kelas.id','=','user_data.id_kelas')
+                                    ->where('user_data.nama_lengkap','=',Auth::user()->nama_lengkap)
+                                    ->get('kelas.kelas')->first();
+        //slice name class and get first text
+        $kelasuser = explode(' ',$datauser->kelas)[0];
         $keteranganpembayaran = $request->nama_pembayaran;
         $alamat = $request->alamat;
         $bulan = BulanModel::all();
@@ -117,7 +132,7 @@ class UserSystemController extends Controller
             ),
         );
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('user.pembayaran',compact('snapToken','nominalpembayaran','keteranganpembayaran','bulan','bulan_request','nominalpembayaran_request'));
+        return view('user.pembayaran',compact('snapToken','nominalpembayaran','keteranganpembayaran','bulan','bulan_request','nominalpembayaran_request','kelasuser'));
     }
 
     public function paymentfinish(){
@@ -140,7 +155,7 @@ class UserSystemController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'tahun' => date('Y'),
         ]);
-        return redirect('/pembayaran')->with('alert','Transaksi Selesai');
+        return redirect('/riwayat')->with('alert','Transaksi Selesai');
         //pikirkan bagaimana mengirimkan riwayat transaksi saat payment midtrans success
     }
 }

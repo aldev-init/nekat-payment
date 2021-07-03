@@ -11,6 +11,7 @@ use App\Models\JurusanModel;
 use App\Models\NominalPembayaran;
 use App\Models\UserRecordModel;
 use App\Models\BulanModel;
+use App\Exports\SiswaExport;
 use PDF;
 use Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -137,8 +138,27 @@ class AdminSystemController extends Controller
                                 ->where('tahun',$request->tahun)
                                 ->whereIn('bulan.bulan',$month)
                                 ->orderBy('bulan.id','asc')
-                                ->paginate(6,['user_data.nama_lengkap','kelas.kelas','jurusan.jurusan','bulan.bulan',
+                                ->paginate(6,['user_data.nama_lengkap','user_data.id_kelas','kelas.kelas','kelas.id','jurusan.jurusan','bulan.bulan',
                                 'nominal_pembayaran.nama_pembayaran','nominal_pembayaran.nominal_pembayaran','user_records.created_at']);
+        //list all student based on class
+        $siswakelas = KelasModel::join('user_data','user_data.id_kelas','=','kelas.id')
+                                    ->where('id_kelas',$request->kelas)
+                                    ->get(['user_data.nama_lengkap']);
+        //if request nama_lengkap there is
+        if($request->has('nama_lengkap')){
+            $data = UserRecordModel::join('user_data','user_records.id_nama','=','user_data.id')
+                                ->join('kelas','user_records.id_kelas','=','kelas.id')
+                                ->join('jurusan','user_records.id_jurusan','=','jurusan.id')
+                                ->join('bulan','user_records.id_bulan','=','bulan.id')
+                                ->join('nominal_pembayaran','user_records.keterangan_pembayaran','=','nominal_pembayaran.id')
+                                ->where('user_data.nama_lengkap',$request->nama_lengkap)
+                                ->where('kelas.id',$request->kelas)
+                                ->where('tahun',$request->tahun)
+                                ->whereIn('bulan.bulan',$month)
+                                ->orderBy('bulan.id','asc')
+                                ->paginate(6,['user_data.nama_lengkap','user_data.id_kelas','kelas.kelas','kelas.id','jurusan.jurusan','bulan.bulan',
+                                'nominal_pembayaran.nama_pembayaran','nominal_pembayaran.nominal_pembayaran','user_records.created_at']);
+        }
         $kelas = KelasModel::all();
         $currentClass = KelasModel::find($request->kelas);
         //jika tombol submit ditombol rekap valuenya pdf
@@ -154,7 +174,7 @@ class AdminSystemController extends Controller
                 return $pdf->download('rekapPDF.pdf');
             }
         }
-        return view('admin.rekap',compact('data','kelas','oldkelas','oldtahun','oldsemester'));
+        return view('admin.rekap',compact('data','kelas','oldkelas','oldtahun','oldsemester','siswakelas'));
     }
 
     public function customtransaksi(Request $request){
@@ -228,6 +248,24 @@ class AdminSystemController extends Controller
             return redirect('/admin/datasiswa')->with('status','Import Berhasil');
         }else{
             return redirect('/admin/datasiswa')->with('status','Import Gagal');
+        }
+    }
+
+    public function exportexcel(){
+        $date = date('Y-m-d');
+        $dateslice = explode('-',$date);
+        $datejoin = join('',$dateslice);
+        $namafile = $datejoin.'siswa.xlsx';
+        $export = Excel::store(new SiswaExport,$namafile,'excel_export');
+
+        if($export){
+            $path = asset('file_export/'.$namafile);
+            $backredirect = '/admin/datasiswa';
+            echo "<h1 style='text-align:center; margin-bottom:100px;'>Klik Link Dibawah Untuk Mulai Download</h1>";
+            echo "<a href=".$path." style='margin-left:650px; font-size:25px;'>download</a><br>";
+            echo "<a href=".$backredirect." style='margin-left:675px;'>Kembali</a>";
+        }else{
+            return redirect('/admin/datasiswa')->with('alert','Export Gagal');
         }
     }
 

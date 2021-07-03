@@ -14,6 +14,14 @@ $year = date('Y');
             <option value="{{$kls->id}}" {{$oldkelas == $kls->id  ? 'selected':''}}>{{$kls->kelas}}</option>
             @endforeach
         </select>
+        {{-- if variable oldkelas is set --}}
+        @isset($oldkelas)
+        <select name="nama_lengkap" id="namalengkap" class="form-control" style="width: 100px; margin-left:110px; margin-top:-38px;">
+            @foreach ($siswakelas as $sk )
+                <option value="{{$sk->nama_lengkap}}">{{$sk->nama_lengkap}}</option>
+            @endforeach
+        </select>
+        @endisset
         <select name="semester" id="semester" class="form-control" style="width: 140px; float:right; margin-top:-40px; margin-left:-40px;">
             <option value="semester1" {{$oldsemester == 'semester1' ? 'selected' : ''}}>Semester 1</option>
             <option value="semester2" {{$oldsemester == 'semester2' ? 'selected' : ''}}>Semester 2</option>

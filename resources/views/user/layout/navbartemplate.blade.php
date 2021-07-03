@@ -13,6 +13,7 @@
     <link href="{{asset('css')}}/swiper.css" rel="stylesheet">
 	<link href="{{asset('css')}}/magnific-popup.css" rel="stylesheet">
 	<link href="{{asset('css')}}/styles.css" rel="stylesheet">
+    @yield('css_head')
     @yield('js_head')
 
     {{-- favicon --}}
@@ -59,7 +60,7 @@
                     </li>
                     @endif
                     @if (Request::url('/pembayaran'))
-                    <li class="nav-item" style="transform: translate(50pc,10pc);">
+                    <li class="nav-item" style="transform: translate(50pc,8pc);">
                         <a class="nav-link page-scroll" href="/pembayaran">Reset</a>
                     </li>
                     @endif

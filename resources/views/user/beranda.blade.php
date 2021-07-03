@@ -138,14 +138,14 @@
                                     <img class="img-fluid" src="{{asset('images/logo/shopeepay-logo.png')}}" alt="alternative" style="width: 200px; height:60px; margin-top:5px;">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="img-fluid" src="{{asset('images/logo/cutter/ovo.png')}}" alt="alternative">
+                                    <img class="img-fluid" src="{{asset('images/logo/kartukredit-removebg-preview.png')}}" alt="alternative" style="margin-top:20px;">
                                 </div>
                                 <div class="swiper-slide">
                                     <img class="img-fluid" src="{{asset('images/logo/gopay.png')}}" alt="alternative" style="margin-top:10px;">
                                 </div>
-                                <div class="swiper-slide">
+                                {{-- <div class="swiper-slide">
                                     <img class="img-fluid" src="{{asset('images/logo/cutter/Dana.png')}}" alt="alternative" style="margin-top:10px;">
-                                </div>
+                                </div> --}}
                                 <div class="swiper-slide">
                                     <img class="img-fluid" src="{{asset('images/logo/bank-transfer-logo.png')}}" alt="alternative">
                                 </div>

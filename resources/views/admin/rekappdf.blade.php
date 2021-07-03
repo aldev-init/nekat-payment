@@ -9,6 +9,9 @@
     <title>Rekap Kelas {{$currentClass->kelas}}</title>
 </head>
 <body>
+    <p style="text-align: center; font-size: 25px;">Nekat Payment</p>
+    <p style="text-align: center; font-size: 25px;">Rekap Pembayaran Kelas</p>
+    <hr>
     <p>Rekap Pembayaran Kelas {{$currentClass->kelas}}</p>
     <p>{{$oldsemester}}</p>
     <p>Tahun: {{$oldtahun}}</p>

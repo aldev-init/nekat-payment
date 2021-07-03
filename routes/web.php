@@ -53,8 +53,10 @@ Route::middleware(['admin','cantback'])->group(function(){
     Route::get('/admin/datasiswa/tambahdata','AdminPagesController@tambahData');
     Route::get('/admin/datasiswa/delete/{id}','AdminDataController@destroy');
     Route::get('/admin/datasiswa/editdata/{id}','AdminPagesController@editData');
-    //DataSiswa Import CSV\Excel
+    //DataSiswa Import Excel
     Route::post('/admin/datasiswa/import','AdminSystemController@importexcel');
+    //Datasiswa Export Excel
+    Route::get('/admin/datasiswa/export','AdminSystemController@exportexcel');
 
     //crud admin kelas
     Route::get('/admin/kelas/delete/{id}','AdminSystemController@hapuskelas');

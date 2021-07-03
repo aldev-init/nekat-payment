@@ -9,6 +9,7 @@ use App\Models\jurusanModel;
 use App\Models\NominalPembayaran;
 use App\Models\UserRecordModel;
 use App\Models\BulanModel;
+use App\Models\UserDataModel;
 use Illuminate\Support\Facades\Auth;
 
 class UserPagesController extends Controller
@@ -39,9 +40,14 @@ class UserPagesController extends Controller
     // }
 
     public function getformpembayaran(){
+        $datauser = UserDataModel::join('kelas','kelas.id','=','user_data.id_kelas')
+                                ->join('jurusan','jurusan.id','=','user_data.id_jurusan')
+                                ->where('user_data.id',Auth::user()->id)
+                                ->get(['user_data.id','nama_lengkap','email','alamat','nisn','nis','kelas.kelas','jurusan.jurusan','password','user_data.id_kelas','user_data.id_jurusan'])[0];
         $nominalpembayaran = NominalPembayaran::all();
+        $kelasuser = explode(' ',$datauser->kelas)[0];
         $bulan = BulanModel::all();
-        return view('user.pembayaran',compact('nominalpembayaran','bulan'));
+        return view('user.pembayaran',compact('nominalpembayaran','bulan','kelasuser'));
     }
 
     public function riwayat(){

@@ -29,6 +29,10 @@ return [
     */
 
     'disks' => [
+        'excel_export'=>[
+            'driver' => 'local',
+            'root' => public_path('file_export'),
+        ],
 
         'local' => [
             'driver' => 'local',
@@ -52,7 +56,6 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
-
     ],
 
     /*
