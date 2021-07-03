@@ -42,8 +42,8 @@
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Nekat Payment</a> -->
 
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="index.html"><img src="images/logoktp.png" alt="alternative" style="height: 50px;"></a>
-            <a class="navbar-brand logo-text page-scroll" href="index.html">Nekat Payment</a>
+            <a class="navbar-brand logo-image" href="/"><img src="images/logoktp.png" alt="alternative" style="height: 50px;"></a>
+            <a class="navbar-brand logo-text page-scroll" href="/">Nekat Payment</a>
             <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -146,9 +146,9 @@
                                 {{-- <div class="swiper-slide">
                                     <img class="img-fluid" src="{{asset('images/logo/cutter/Dana.png')}}" alt="alternative" style="margin-top:10px;">
                                 </div> --}}
-                                <div class="swiper-slide">
+                                {{-- <div class="swiper-slide">
                                     <img class="img-fluid" src="{{asset('images/logo/bank-transfer-logo.png')}}" alt="alternative">
-                                </div>
+                                </div> --}}
                                 {{-- </div>
                                 <div class="swiper-slide">
                                     <img class="img-fluid" src="images/customer-logo-5.png" alt="alternative">
@@ -179,7 +179,7 @@
                     <div class="text-container">
                         <h2>Kenalan Sama Nekat Payment Yuk!</h2>
                         <p>Nekat Payment merupakan platform pembayaran biaya sekolah berbasis online.</p>
-                        <p>Tidak perlu ribet lagi untuk mengurus biaya administrasi sekolah. Dengan Nekat Payment semua bisa selesai dengan cepat dan mudah pastinya</p>
+                        <p>Tidak perlu ribet lagi untuk mengurus Pembayaran Ke Sekolah. Dengan Nekat Payment semua bisa selesai dengan cepat dan mudah</p>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->

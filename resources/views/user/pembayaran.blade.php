@@ -6,7 +6,7 @@
 @section('keterangan', 'Pembayaran')
 @section('profilesamping')
 @section('css_head')
-<link rel="stylesheet" href="{{asset('codesevenalert/build/toastr.css')}}">
+    <link rel="stylesheet" href="{{ asset('codesevenalert/build/toastr.css') }}">
 @endsection
 @section('js_head')
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
@@ -52,7 +52,7 @@
                                             </div>
                                             <div class="col-6 col-md-2">
                                                 <small class="text-nowrap text-secondary">Biaya Admin</small>
-                                                <p class="mb-0">Rp.0</p>
+                                                <p class="mb-0">{{ number_format($nm->biaya_admin) }}</p>
                                             </div>
                                             {{-- <div class="col-6 col-md-2">
                                                 <small class="text-nowrap text-secondary">Batas Pembayaran</small>
@@ -62,15 +62,16 @@
                                                 @csrf
                                                 <div class="col-6 col-md-2">
                                                     <small class="text-nowrap text-secondary">Bulan</small>
-                                                    <input type="text" name="id_nama" id="idnama" value="{{Auth::user()->id}}" hidden>
+                                                    <input type="text" name="id_nama" id="idnama"
+                                                        value="{{ Auth::user()->id }}" hidden>
                                                     <select name="bulan" id="bulan" class="form-control"
                                                         style="width: 100px;">
                                                         @foreach ($bulan as $bln)
-                                                            <option value="{{ $bln->id }}">{{ $bln->bulan }}</option>
+                                                            <option value="{{ $bln->id }}" {{($oldbulan == $bln->id) ? 'selected':''}}>{{ $bln->bulan }}</option>
                                                         @endforeach
-                                                        @if(Session::has('status'))
+                                                        @if (Session::has('status'))
                                                             <script>
-                                                                alert('{{Session::get("status")}}');
+                                                                alert('{{ Session::get('status') }}');
                                                             </script>
                                                         @endif
                                                     </select>
@@ -85,6 +86,7 @@
                                             <input type="hidden" name="nama_pembayaran" value="{{ $nm->id }}">
                                             <input type="hidden" name="nominal_pembayaran"
                                                 value="{{ $nm->nominal_pembayaran }}">
+                                            <input type="hidden" name="biaya_admin" value="{{ $nm->biaya_admin }}">
                                             <button type="submit" class="btn btn-block btn-outline-primary">Pilih
                                                 Pembayaran</button>
                                             </form>
@@ -193,7 +195,7 @@
     </form>
     <script type="text/javascript">
     @endisset --}}
-    <script src="{{asset('codesevenalert/toastr.js')}}"></script>
+    <script src="{{ asset('codesevenalert/toastr.js') }}"></script>
     <script type="text/javascript">
         var payButton = document.getElementById('pay-button');
         // For example trigger on button clicked, or any time you need
@@ -201,11 +203,13 @@
             @isset($snapToken)
                 window.snap.pay('{{ $snapToken }}', {
                 onSuccess: function() {
-                window.location.href =
-                '{{ route('selesai', ['bulan' => $bulan_request, 'nama' => $keteranganpembayaran, 'nominal' => $nominalpembayaran_request]) }}';
+                    window.location.href ='{{ route('selesai', ['bulan' => $bulan_request, 'nama' => $keteranganpembayaran, 'nominal' => $nominalpembayaran_request]) }}';
                 },
                 onError: function() {
-                alert('Maaf Terjadi Kesalahan,Mohon coba Kembali dalam 1-2 Menit');
+                    alert('Maaf Terjadi Kesalahan,Mohon coba Kembali dalam 1-2 Menit');
+                },
+                onPending: function(){
+                    alert('Pembayaran Pending,Menunggu Pembayaran Anda');
                 }
                 });
             @endisset
@@ -213,4 +217,5 @@
         });
     </script>
 @endsection
-{{-- Tambahkan Alert MEnarik --}}
+{{-- Perbaiki Payment bank transfer kalo bisa--}}
+{{-- Perbaiki juga old bulan --}}

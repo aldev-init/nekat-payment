@@ -84,7 +84,9 @@ class AdminSystemController extends Controller
         return redirect('/admin/kelasjurusan')->with('status','Tambah Data Jurusan Berhasil');
     }
     public function search(Request $request){
-        $data= UserDataModel::where('nama_lengkap','like',"%".$request->nama_lengkap."%")->paginate();
+        $data= UserDataModel::join('kelas','user_data.id_kelas','=','kelas.id')
+                            ->join('jurusan','user_data.id_jurusan','=','jurusan.id')
+                            ->where('nama_lengkap','like',"%".$request->nama_lengkap."%")->paginate();
         $kelas = KelasModel::all();
         $jurusan = JurusanModel::all();
         return view('admin.datasiswa',compact('data','kelas','jurusan'));
@@ -94,6 +96,7 @@ class AdminSystemController extends Controller
         $nominal = new NominalPembayaran();
         $nominal->nama_pembayaran = $request->nama_pembayaran;
         $nominal->nominal_pembayaran = $request->nominal_pembayaran;
+        $nominal->biaya_admin = $request->biaya_admin;
         $nominal->save();
         return redirect('/admin/nominalpembayaran')->with('status','Tambah Data Pembayaran Berhasil');
     }
@@ -111,6 +114,7 @@ class AdminSystemController extends Controller
         $data = NominalPembayaran::where('id','=',$id)->update([
             'nama_pembayaran' => $request->nama_pembayaran,
             'nominal_pembayaran' => $request->nominal_pembayaran,
+            'biaya_admin' => $request->biaya_admin,
         ]);
         if($data){
             return redirect('/admin/nominalpembayaran')->with('status','Ubah Data Berhasil');
@@ -158,6 +162,7 @@ class AdminSystemController extends Controller
                                 ->orderBy('bulan.id','asc')
                                 ->paginate(6,['user_data.nama_lengkap','user_data.id_kelas','kelas.kelas','kelas.id','jurusan.jurusan','bulan.bulan',
                                 'nominal_pembayaran.nama_pembayaran','nominal_pembayaran.nominal_pembayaran','user_records.created_at']);
+            $nama = $request->nama_lengkap;
         }
         $kelas = KelasModel::all();
         $currentClass = KelasModel::find($request->kelas);
@@ -168,6 +173,9 @@ class AdminSystemController extends Controller
             if(!empty($isCanPDF)){
                 //print to pdf
                 $pdf = PDF::loadview('admin.rekappdf',compact('data','currentClass','oldtahun','oldsemester'))->setPaper('A4','potrait');
+                if(isset($nama)){
+                    $pdf = PDF::loadview('admin.rekappdf',compact('data','currentClass','oldtahun','oldsemester','nama'))->setPaper('A4','potrait');
+                }
                 //simpan file sementara pdf ke directory public
                 Storage::put('public/PDFrekap/rekapPDF.pdf', $pdf->output());
                 //donwload pdf

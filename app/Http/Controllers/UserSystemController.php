@@ -84,6 +84,7 @@ class UserSystemController extends Controller
     }
 
     public function payment(Request $request){
+        $oldbulan = $request->bulan;
         //check data in user_records
         $isExist = UserRecordModel::where('id_nama','=',$request->id_nama)
                                     ->where('id_bulan','=',$request->bulan)
@@ -122,7 +123,7 @@ class UserSystemController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
-                'gross_amount' => $request->nominal_pembayaran,
+                'gross_amount' => $request->nominal_pembayaran + $request->biaya_admin,
                 'name' => $request->nama_pembayaran,
             ),
             'customer_details' => array(
@@ -132,7 +133,7 @@ class UserSystemController extends Controller
             ),
         );
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('user.pembayaran',compact('snapToken','nominalpembayaran','keteranganpembayaran','bulan','bulan_request','nominalpembayaran_request','kelasuser'));
+        return view('user.pembayaran',compact('snapToken','nominalpembayaran','keteranganpembayaran','bulan','bulan_request','nominalpembayaran_request','kelasuser','oldbulan'));
     }
 
     public function paymentfinish(){
@@ -155,7 +156,6 @@ class UserSystemController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'tahun' => date('Y'),
         ]);
-        return redirect('/riwayat')->with('alert','Transaksi Selesai');
-        //pikirkan bagaimana mengirimkan riwayat transaksi saat payment midtrans success
+        return redirect('/riwayat')->with('alert','Transaksi Berhasil');
     }
 }

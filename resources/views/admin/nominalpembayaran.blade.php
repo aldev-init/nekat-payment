@@ -11,9 +11,10 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th class="col col-5">Nama Pembayaran</th>
-                        <th class="col col-4">Nominal Pembayaran</th>
-                        <th>Action</th>
+                        <th class="col col-3">Nama Pembayaran</th>
+                        <th class="col col-3">Nominal Pembayaran</th>
+                        <th class="col col-3">Biaya Admin</th>
+                        <th class="col col-5">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                         <tr>
                             <td>{{ $nml->nama_pembayaran }}</td>
                             <td>{{ $nml->nominal_pembayaran }}</td>
+                            <td>{{ $nml->biaya_admin }}</td>
                             <td>
                                 <div class="action-container" style="margin-left: 30px;">
                                     <button class="btn btn-warning" data-target="#editpembayaran-{{ $nml->id }}"
@@ -52,6 +54,7 @@
                         @csrf
                         <input type="text" name="nama_pembayaran" placeholder="Nama Pembayaran...">
                         <input type="text" name="nominal_pembayaran" placeholder="Nominal Pembayaran..."><br>
+                        <input type="text" name="biaya_admin" placeholder="Biaya Admin..."><br>
                         <button style="submit" class="btn btn-success" style="margin-top:20px;">Tambah Pembayaran</button>
                     </form>
                 </div>
@@ -73,6 +76,8 @@
                                 value="{{ $nml->nama_pembayaran }}">
                             <input type="text" name="nominal_pembayaran" placeholder="Nominal Pembayaran..."
                                 value="{{ $nml->nominal_pembayaran }}"><br>
+                            <input type="text" name="biaya_admin" placeholder="Biaya Admin..."
+                                value="{{ $nml->biaya_admin }}"><br>
                             <button style="submit" class="btn btn-success" style="margin-top:20px;">Edit Pembayaran</button>
                         </form>
                     </div>

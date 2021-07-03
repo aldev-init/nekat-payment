@@ -13,30 +13,33 @@
     <p style="text-align: center; font-size: 25px;">Rekap Pembayaran Kelas</p>
     <hr>
     <p>Rekap Pembayaran Kelas {{$currentClass->kelas}}</p>
-    <p>{{$oldsemester}}</p>
+    @isset($nama)
+    <p>Dengan Nama: {{$nama}}</p>
+    @endisset
+    <p>{{ucfirst($oldsemester)}}</p>
     <p>Tahun: {{$oldtahun}}</p>
     <table class="table"  style="border: 1px solid black;">
         <thead>
           <tr>
-            <th scope="col">Nama</th>
-            <th scope="col">Kelas</th>
-            <th scope="col">Jurusan</th>
-            <th scope="col">Bulan</th>
-            <th scope="col">Ket.Pembayaran</th>
-            <th scope="col">Jmlh.Bayar</th>
-            <th scope="col">Tanggal/Waktu</th>
+            <th scope="col" style="border: 1px solid black;">Nama</th>
+            <th scope="col" style="border: 1px solid black;">Kelas</th>
+            <th scope="col" style="border: 1px solid black;">Jurusan</th>
+            <th scope="col" style="border: 1px solid black;">Bulan</th>
+            <th scope="col" style="border: 1px solid black;">Ket.Pembayaran</th>
+            <th scope="col" style="border: 1px solid black;">Jmlh.Bayar</th>
+            <th scope="col" style="border: 1px solid black;">Tanggal/Waktu</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($data as $dt )
           <tr>
-            <td style="padding: 5px;">{{$dt->nama_lengkap}}</td>
-            <td style="padding: 5px;">{{$dt->kelas}}</td>
-            <td style="padding: 5px;">{{$dt->jurusan}}</td>
-            <td style="padding: 5px;">{{$dt->bulan}}</td>
-            <td style="padding: 5px;">{{$dt->nama_pembayaran}}</td>
-            <td style="padding: 5px;">{{$dt->nominal_pembayaran}}</td>
-            <td style="padding: 5px;">{{$dt->created_at}}</td>
+            <td style="padding: 5px;border: 1px solid black;">{{$dt->nama_lengkap}}</td>
+            <td style="padding: 5px;border: 1px solid black;">{{$dt->kelas}}</td>
+            <td style="padding: 5px;border: 1px solid black;">{{$dt->jurusan}}</td>
+            <td style="padding: 5px;border: 1px solid black;">{{$dt->bulan}}</td>
+            <td style="padding: 5px;border: 1px solid black;">{{$dt->nama_pembayaran}}</td>
+            <td style="padding: 5px;border: 1px solid black;">{{$dt->nominal_pembayaran}}</td>
+            <td style="padding: 5px;border: 1px solid black;">{{$dt->created_at}}</td>
           </tr>
           @endforeach
         </tbody>

@@ -40,6 +40,7 @@ class UserPagesController extends Controller
     // }
 
     public function getformpembayaran(){
+        $oldbulan = null;
         $datauser = UserDataModel::join('kelas','kelas.id','=','user_data.id_kelas')
                                 ->join('jurusan','jurusan.id','=','user_data.id_jurusan')
                                 ->where('user_data.id',Auth::user()->id)
@@ -47,7 +48,7 @@ class UserPagesController extends Controller
         $nominalpembayaran = NominalPembayaran::all();
         $kelasuser = explode(' ',$datauser->kelas)[0];
         $bulan = BulanModel::all();
-        return view('user.pembayaran',compact('nominalpembayaran','bulan','kelasuser'));
+        return view('user.pembayaran',compact('nominalpembayaran','bulan','kelasuser','oldbulan'));
     }
 
     public function riwayat(){
