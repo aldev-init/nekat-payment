@@ -92,8 +92,23 @@
     <script>
         var message = '{{ Session::get('status') }}';
         var exist = '{{ Session::has('status') }}';
-        if (exist) {
-            alert(message);
+        //tambah
+        if (exist && message === 'Tambah Data Pembayaran Berhasil') {
+            toastr.success(message);
+        }
+        //hapus
+        if(exist && message === 'Pembayaran Berhasil Dihapus'){
+            toastr.success(message);
+        }
+        if(exist && message === 'Pembayaran Gagal Dihapus'){
+            toastr.error(message);
+        }
+        //ubah
+        if(exist && message === 'Ubah Data Berhasil'){
+            toastr.success(message);
+        }
+        if(exist && message === 'Ubah Data Gagal'){
+            toastr.error(message);
         }
     </script>
 @endsection

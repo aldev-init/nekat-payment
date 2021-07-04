@@ -156,7 +156,6 @@
 
     {{-- javascript --}}
     <script>
-
         window.setTimeout("waktu()", 500);
 
         function waktu() {
@@ -176,5 +175,3 @@
     </script>
 @endsection
 
-{{-- masih bug desain
-benarkan cepatt --}}

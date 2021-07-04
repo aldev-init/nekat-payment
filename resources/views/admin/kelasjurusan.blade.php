@@ -165,8 +165,23 @@
         <script>
             var message = '{{ Session::get('status') }}';
             var exist = '{{ Session::has('status') }}';
-            if (exist) {
-                alert(message);
+            //edit
+            if (exist && message === 'Data Berhasil Diubah') {
+                toastr.success(message);
+            }
+            if(exist && message === 'Data Gagal Diubah'){
+                toastr.error(message);
+            }
+            //hapus
+            if(exist && message === 'Data Berhasil Dihapus'){
+                toastr.success(message);
+            }
+            if(exist && message === 'Data Gagal Dihapus'){
+                toastr.error(message);
+            }
+            //tambah
+            if(exist && message === 'Tambah Data Kelas Berhasil' || message === 'Tambah Data Jurusan Berhasil'){
+                toastr.success(message);
             }
         </script>
     @endsection

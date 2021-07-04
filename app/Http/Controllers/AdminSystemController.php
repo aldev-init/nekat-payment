@@ -52,7 +52,14 @@ class AdminSystemController extends Controller
         }
     }
     public function ubahkelas($id,Request $request){
-        $ubah = KelasModel::where('id','=',$id)->update('status','Data Berhasil Diubah');
+        $ubah = KelasModel::where('id','=',$id)->update([
+            'kelas' => $request->kelas,
+        ]);
+        if($ubah){
+            return redirect('/admin/kelasjurusan')->with('status','Data Berhasil Diubah');
+        }else{
+            return redirect('/admin/kelasjurusan')->with('status','Data Gagal Diubah');
+        }
     }
     public function tambahkelas(Request $request){
         $kelas = new KelasModel();
@@ -124,6 +131,7 @@ class AdminSystemController extends Controller
     }
 
     public function customrekap(Request $request){
+        $nama = $request->nama_lengkap;
         $oldkelas = $request->kelas;
         $oldtahun = $request->tahun;
         $oldsemester = $request->semester;
@@ -182,7 +190,7 @@ class AdminSystemController extends Controller
                 return $pdf->download('rekapPDF.pdf');
             }
         }
-        return view('admin.rekap',compact('data','kelas','oldkelas','oldtahun','oldsemester','siswakelas'));
+        return view('admin.rekap',compact('data','kelas','oldkelas','oldtahun','oldsemester','siswakelas','nama'));
     }
 
     public function customtransaksi(Request $request){

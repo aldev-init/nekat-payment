@@ -33,6 +33,8 @@
   <link rel="stylesheet" href="{{asset('template')}}/plugins/summernote/summernote-bs4.min.css">
   {{-- icon tab --}}
   <link rel="shortcut icon" href="{{asset('img/smkn1katapang.png')}}">
+  {{-- toastr alert --}}
+  <link rel="stylesheet" href="{{asset('codesevenalert/build/toastr.css')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
@@ -327,6 +329,7 @@
 <script src="{{asset('template')}}/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('template')}}/dist/js/pages/dashboard.js"></script>
+<script src="{{asset('codesevenalert/toastr.js')}}"></script>
 @yield('javascript')
 </body>
 </html>

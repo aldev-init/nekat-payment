@@ -18,7 +18,7 @@ $year = date('Y');
         @isset($oldkelas)
         <select name="nama_lengkap" id="namalengkap" class="form-control" style="width: 100px; margin-left:110px; margin-top:-38px;">
             @foreach ($siswakelas as $sk )
-                <option value="{{$sk->nama_lengkap}}">{{$sk->nama_lengkap}}</option>
+                <option value="{{$sk->nama_lengkap}}" {{(isset($nama) && $nama == $sk->nama_lengkap) ? 'selected':''}}>{{$sk->nama_lengkap}}</option>
             @endforeach
         </select>
         @endisset

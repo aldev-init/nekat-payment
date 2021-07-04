@@ -199,8 +199,14 @@
     <script>
         var message = '{{ Session::get('alert') }}';
         var exist = '{{ Session::has('alert') }}';
-        if (exist) {
-            alert(message);
+        if (exist && message === 'Tambah Data Berhasil') {
+            toastr.success(message);
+        }
+        if (exist && message === 'Ubah Data Berhasil'){
+            toastr.warning(message);
+        }
+        if (exist && message === 'Hapus Data Berhasil' || message === 'Hapus Data Gagal'){
+            toastr.error(message);
         }
     </script>
     {{-- <script src="{{asset('template')}}/plugins/jquery/jquery.min.js"></script>
