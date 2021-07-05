@@ -24,6 +24,7 @@ Route::middleware(['auth','cantback'])->group(function(){
     Route::get('/profile','UserSystemController@profile');
     Route::get('/riwayat','UserPagesController@riwayat');
     Route::get('/editprofile/{id}','UserSystemController@editprofile');
+    Route::get('/news','UserPagesController@news');
 });
 
 

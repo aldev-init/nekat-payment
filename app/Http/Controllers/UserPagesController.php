@@ -65,6 +65,10 @@ class UserPagesController extends Controller
         return view('user.riwayat',compact('data'));
     }
 
+    public function news(){
+        return view('user.nekatnews');
+    }
+
     public function resetpassword(){
         return view('user.forgotpassword');
     }

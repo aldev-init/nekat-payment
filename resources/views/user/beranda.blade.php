@@ -65,6 +65,9 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#aboutus">About Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/news">News</a>
+                    </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="/pembayaran">Pembayaran</a>
                         {{-- <div class="dropdown-menu" aria-labelledby="dropdown01"> --}}
