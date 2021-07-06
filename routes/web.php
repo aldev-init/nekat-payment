@@ -53,6 +53,7 @@ Route::middleware(['admin','cantback'])->group(function(){
     //Crud nekat news
     Route::get('/admin/postadmin','AdminPagesController@postadmin');
     Route::post('/admin/post','AdminSystemController@postadminsystem');
+    Route::get('/admin/post/delete/{id}','AdminSystemController@hapuspost');
     //crud Admin datasiswa
     Route::get('/admin/datasiswa/tambahdata','AdminPagesController@tambahData');
     Route::get('/admin/datasiswa/delete/{id}','AdminDataController@destroy');

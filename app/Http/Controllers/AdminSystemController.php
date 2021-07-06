@@ -316,6 +316,10 @@ class AdminSystemController extends Controller
         $post->save();
         return redirect('/admin/postadmin')->with('Status','Postingan Berhasil Dikirim');
     }
+    public function hapuspost($id){
+        $post = PostAdminModel::where('id','=',$id)->delete();
+        return redirect('/admin/postadmin')->with('status','Postingan Berhasil dihapus');
+    }
 
     // public function printPDF(){
     //     $pdf = PDF::loadview('admin.rekap',compact('kelas','data','oldkelas','oldtahun','oldsemester'))->setPaper('A4','potrait');

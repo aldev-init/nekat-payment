@@ -155,7 +155,7 @@ class AdminPagesController extends Controller
     }
 
     public function postadmin(){
-        $post = PostAdminModel::all();
+        $post = PostAdminModel::orderBy('created_at','desc')->get();
         return view('admin.postadmin',compact('post'));
     }
 

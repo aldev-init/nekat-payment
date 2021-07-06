@@ -10,6 +10,7 @@ use App\Models\NominalPembayaran;
 use App\Models\UserRecordModel;
 use App\Models\BulanModel;
 use App\Models\UserDataModel;
+use App\Models\PostAdminModel;
 use Illuminate\Support\Facades\Auth;
 
 class UserPagesController extends Controller
@@ -66,7 +67,8 @@ class UserPagesController extends Controller
     }
 
     public function news(){
-        return view('user.nekatnews');
+        $post = PostAdminModel::orderBy('created_at','desc')->get();
+        return view('user.nekatnews',compact('post'));
     }
 
     public function resetpassword(){
