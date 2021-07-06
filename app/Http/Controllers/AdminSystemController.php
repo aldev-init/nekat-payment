@@ -12,6 +12,7 @@ use App\Models\NominalPembayaran;
 use App\Models\UserRecordModel;
 use App\Models\BulanModel;
 use App\Exports\SiswaExport;
+use App\Models\PostAdminModel;
 use PDF;
 use Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -303,6 +304,17 @@ class AdminSystemController extends Controller
             'status'=> 'selesai',
         ]);
         return redirect('/admin/beranda');
+    }
+
+    public function postadminsystem(Request $request){
+        date_default_timezone_set('Asia/Jakarta');
+        $post = new PostAdminModel();
+        $post->judul_postingan = $request->judul_postingan;
+        $post->isi_postingan = $request->isi_postingan;
+        $post->postby = 'Admin NekatPayment';
+        $post->created_at = date('Y-m-d H:i:s');
+        $post->save();
+        return redirect('/admin/postadmin')->with('Status','Postingan Berhasil Dikirim');
     }
 
     // public function printPDF(){

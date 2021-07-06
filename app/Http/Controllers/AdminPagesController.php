@@ -11,6 +11,7 @@ use App\Models\UserRecordModel;
 use App\Models\NominalPembayaran;
 use App\Models\BulanModel;
 use App\Models\TodoModel;
+use App\Models\PostAdminModel;
 use PDO;
 
 class AdminPagesController extends Controller
@@ -151,6 +152,11 @@ class AdminPagesController extends Controller
                                 'nominal_pembayaran.nama_pembayaran','nominal_pembayaran.nominal_pembayaran','user_records.created_at']);
         $kelas = KelasModel::all();
         return view('admin.rekap',compact('data','kelas','oldkelas','oldtahun','oldsemester'));
+    }
+
+    public function postadmin(){
+        $post = PostAdminModel::all();
+        return view('admin.postadmin',compact('post'));
     }
 
     public function loadview(Request $request){

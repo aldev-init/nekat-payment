@@ -247,6 +247,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/admin/postadmin" class="nav-link {{(request()->is('admin/postadmin')) ? 'active':''}}">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Posting Admin
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
