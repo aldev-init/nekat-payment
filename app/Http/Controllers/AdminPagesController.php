@@ -181,6 +181,19 @@ class AdminPagesController extends Controller
         return view('admin.rekappdf',compact('data'));
     }
 
+    public function detailsiswa($siswa,$id){
+        $siswa = UserDataModel::join('kelas','kelas.id','=','user_data.id_kelas')
+                                ->join('jurusan','jurusan.id','=','user_data.id_jurusan')
+                                ->where('user_data.id',$id)
+                                ->where('user_data.nama_lengkap',$siswa)
+                                ->get(['user_data.nama_lengkap','user_data.email','user_data.alamat','user_data.nisn'
+                                ,'user_data.nis','kelas.kelas','jurusan.jurusan','user_data.password','user_data.role'])->first();
+        $transaksi = UserRecordModel::join('nominal_pembayaran','nominal_pembayaran.id','=','user_records.keterangan_pembayaran')
+                                    ->join('bulan','bulan.id','=','user_records.id_bulan')
+                                    ->where('id_nama',$id)->get();
+        return view('admin.detailsiswa',compact('siswa','transaksi'));
+    }
+
 
     // public function registerform(){
     //     return view('admin.register');

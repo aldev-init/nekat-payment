@@ -50,6 +50,7 @@ Route::middleware(['admin','cantback'])->group(function(){
     Route::get('/admin/transaksisiswa','AdminPagesController@riwayat');
     Route::get('/admin/nominalpembayaran','AdminPagesController@nominalpembayaran');
     Route::get('/admin/rekap','AdminPagesController@rekap');
+    Route::get('/admin/detail/{siswa}/{id}','AdminPagesController@detailsiswa');
     //Crud nekat news
     Route::get('/admin/postadmin','AdminPagesController@postadmin');
     Route::post('/admin/post','AdminSystemController@postadminsystem');

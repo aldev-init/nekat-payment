@@ -55,12 +55,9 @@
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
-                                            <th>Email</th>
                                             <th>Alamat</th>
                                             <th>Kelas</th>
                                             <th>Jurusan</th>
-                                            <th>NISN</th>
-                                            <th>NIS</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -68,14 +65,13 @@
                                         @foreach ($data as $dt)
                                             <tr>
                                                 <td>{{ $dt->nama_lengkap }}</td>
-                                                <td>{{ $dt->email }}</td>
-                                                <td>{{ $dt->alamat }}</td>
+                                                <td>{{ $dt->alamat }}</>
                                                 <td>{{ $dt->kelas }}</td>
                                                 <td>{{ $dt->jurusan }}</td>
-                                                <td>{{ $dt->nisn }}</td>
-                                                <td>{{ $dt->nis }}</td>
                                                 <td>
                                                     <div class="action-container">
+                                                        <a href="/admin/detail/{{$dt->nama_lengkap}}/{{ $dt->id }}"
+                                                            class="btn btn-block btn-xs btn-info">Detail</a>
                                                         <button data-target="#editdata-{{ $dt->id }}"
                                                             data-toggle="modal"
                                                             class="btn btn-block btn-xs btn-warning">Ubah</button>
